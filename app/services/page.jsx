@@ -1,5 +1,5 @@
 // pages/services.jsx
-import Navbar from "../../components/Navbar";
+//import Navbar from "../../components/Navbar";
 
 export default function Services() {
   const services = [
@@ -11,7 +11,6 @@ export default function Services() {
 
   return (
     <>
-      <Navbar />
       <section className="p-8 grid md:grid-cols-2 lg:grid-cols-4 gap-4">
         {services.map((s, i) => (
           <div key={i} className="p-4 border rounded-xl shadow-lg hover:scale-105 transition">
