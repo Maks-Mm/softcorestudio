@@ -1,4 +1,4 @@
-//app/components/GlassButton.js
+// app/components/GlassButton.js
 "use client";
 
 import { useState } from "react";
@@ -7,15 +7,16 @@ export default function GlassButton({ children }) {
   const [hover, setHover] = useState(false);
   const [pressed, setPressed] = useState(false);
 
+  // 50% SIZE REDUCTION
   const baseStyle = {
     position: "relative",
     display: "inline-flex",
     alignItems: "center",
     justifyContent: "center",
-    padding: "1rem 2.5rem",
+    padding: "0.5rem 1.25rem", // 50% of original
     borderRadius: 9999,
     fontWeight: 700,
-    fontSize: "1.125rem",
+    fontSize: "0.5625rem", // 50% of 1.125rem
     cursor: "pointer",
     overflow: "hidden",
     userSelect: "none",
@@ -41,7 +42,7 @@ export default function GlassButton({ children }) {
 
   const shimmerBarStyle = {
     height: "100%",
-    width: "56px",
+    width: "28px", // 50% of original 56px
     background: "rgba(255,255,255,0.18)",
     transform: hover
       ? "skew(-13deg) translateX(120%)"
@@ -61,8 +62,8 @@ export default function GlassButton({ children }) {
     inset: 0,
     borderRadius: 9999,
     zIndex: -1,
-    transform: "translateY(10px)",
-    filter: "blur(8px)",
+    transform: "translateY(5px)", // 50% of 10px
+    filter: "blur(4px)", // 50% of 8px
     background: "rgba(0,0,0,0.5)",
     opacity: 0.25,
     pointerEvents: "none",

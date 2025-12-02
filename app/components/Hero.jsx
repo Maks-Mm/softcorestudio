@@ -18,9 +18,12 @@ export default function Hero() {
             <span>Full-Stack Development Studio</span>
           </div>
 
-          <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-            Softcore Studio
-          </h1>
+          {/* LOGO + NAME LINE */}
+          <div className="flex items-center justify-center gap-4 mb-6">
+            <h1 className="text-5xl md:text-7xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+              Softcore Studiosss
+            </h1>
+          </div>
 
           <p className="text-xl md:text-2xl text-gray-600 mb-8 max-w-3xl mx-auto leading-relaxed">
             We build modern websites, custom web applications & digital solutions
@@ -43,7 +46,6 @@ export default function Hero() {
             <GlassButton>View Portfolio</GlassButton>
             <GlassButton>Book a Call</GlassButton>
           </div>
-
         </div>
       </div>
     </section>
