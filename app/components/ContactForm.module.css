@@ -77,3 +77,36 @@
   width: 20px;
   height: 20px;
 }
+
+/* === Honeypots === */
+.honeypot1 { position: absolute; left: -9999px; opacity: 0; }
+.honeypot2 { display: none; }
+.honeypot3 { visibility: hidden; height: 0; width: 0; position: absolute; }
+.honeypot4 { position: absolute; top: -4000px; left: -4000px; }
+
+/* === Message === */
+.message {
+  padding: 1rem;
+  border-radius: 0.75rem;
+  text-align: center;
+  font-weight: 600;
+  display: none;
+}
+
+.success {
+  display: block;
+  background: #d4edda;
+  color: #155724;
+}
+
+.error {
+  display: block;
+  background: #f8d7da;
+  color: #721c24;
+}
+
+.warning {
+  display: block;
+  background: #fff3cd;
+  color: #856404;
+}

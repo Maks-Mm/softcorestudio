@@ -1,6 +1,7 @@
-"use client";
+//app/components/Services.jsx
 
 import { Monitor, ShoppingCart, Cpu, Zap, Shield, TrendingUp } from 'lucide-react';
+import GlassButton from './GlassButton';
 
 const services = [
   {
@@ -66,25 +67,25 @@ export default function Services() {
             to complex web applications.
           </p>
         </div>
-        
+
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {services.map((service, index) => (
-            <div 
+            <div
               key={index}
               className="group bg-white rounded-2xl p-8 border border-gray-200 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2"
             >
               <div className={`inline-flex p-3 rounded-xl bg-gradient-to-r ${service.color} text-white mb-6 group-hover:scale-110 transition-transform`}>
                 {service.icon}
               </div>
-              
+
               <h3 className="text-2xl font-bold mb-3 text-gray-900">{service.title}</h3>
               <p className="text-gray-600 mb-6">{service.description}</p>
-              
+
               <div className="mb-6">
                 <h4 className="font-semibold mb-3 text-gray-800">Includes:</h4>
                 <div className="flex flex-wrap gap-2">
                   {service.features.map((feature, idx) => (
-                    <span 
+                    <span
                       key={idx}
                       className="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm font-medium"
                     >
@@ -93,12 +94,12 @@ export default function Services() {
                   ))}
                 </div>
               </div>
-              
+
               <div className="flex items-center justify-between pt-6 border-t border-gray-100">
                 <span className="text-2xl font-bold text-gray-900">{service.price}</span>
-                <button className="px-6 py-2 bg-gradient-to-r from-blue-500 to-purple-500 text-white rounded-lg font-semibold hover:shadow-lg transition-shadow">
+                <GlassButton className="px-6 py-2 bg-gradient-to-r from-blue-500 to-purple-500 text-white rounded-lg font-semibold hover:shadow-lg transition-shadow">
                   Learn More
-                </button>
+                </GlassButton>
               </div>
             </div>
           ))}

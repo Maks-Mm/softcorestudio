@@ -25,11 +25,11 @@ export default function Services() {
               Comprehensive web development solutions for businesses of all sizes.
             </p>
           </div>
-          
+
           <div className={styles.servicesGrid}>
             {services.map((s, i) => (
-              <div 
-                key={i} 
+              <div
+                key={i}
                 className={styles.serviceCard}
               >
                 <div className={styles.serviceIcon}>

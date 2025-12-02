@@ -5,6 +5,7 @@ import Services from './components/Services';
 import TechStack from './components/TechStack';
 import WhyChooseUs from './components/WhyChooseUs';
 import ContactForm from './components/ContactForm';
+import GlassButton from './components/GlassButton';
 
 export default function Home() {
   return (
@@ -26,6 +27,7 @@ export default function Home() {
             <div className="text-center md:text-right">
               <p className="text-gray-400 mb-4">© {new Date().getFullYear()} Softcore Studio. All rights reserved.</p>
               <div className="flex gap-4 justify-center md:justify-end">
+                
                 <button className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition">
                   WhatsApp
                 </button>
