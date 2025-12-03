@@ -2,6 +2,8 @@
 
 import { ArrowRight, Code, Globe, Rocket } from 'lucide-react';
 import GlassButton from './GlassButton';
+import { motion } from "framer-motion";
+import InfoBadge from './InfoBadge';
 
 export default function Hero() {
   return (
@@ -18,28 +20,32 @@ export default function Hero() {
             <span>Full-Stack Development Studio</span>
           </div>
 
-          {/* LOGO + NAME LINE */}
-          <div className="flex items-center justify-center gap-4 mb-6">
+          {/* LOGO + NAME LINE
+            <div className="flex items-center justify-center gap-4 mb-6">
             <h1 className="text-5xl md:text-7xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-              Softcore Studiosss
+              Softcore Studio
             </h1>
           </div>
+          */}
 
-          <p className="text-xl md:text-2xl text-gray-600 mb-8 max-w-3xl mx-auto leading-relaxed">
+
+
+
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="text-xl md:text-2xl text-gray-600 mb-8 max-w-3xl mx-auto leading-relaxed"
+          >
             We build modern websites, custom web applications & digital solutions
             that help businesses grow online.
-          </p>
-
+          </motion.p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
-            <div className="flex items-center gap-2 text-gray-600">
-              <Globe className="w-5 h-5" />
-              <span>English • German • Polish • Russian</span>
-            </div>
-            <div className="flex items-center gap-2 text-gray-600">
-              <Code className="w-5 h-5" />
-              <span>React • WordPress • Node.js • MongoDB</span>
-            </div>
+            <InfoBadge icon={Globe} text="English • German • Polish • Russian" />
+            <InfoBadge icon={Code} text="React • WordPress • Node.js • MongoDB" />
           </div>
+
+
 
           <div className="flex flex-wrap justify-center gap-4">
             <GlassButton>Get Free Quote</GlassButton>
