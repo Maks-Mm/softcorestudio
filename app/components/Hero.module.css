@@ -1,0 +1,63 @@
+.heroSection {
+  position: relative;
+  overflow: hidden;
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+}
+
+/* BACKGROUND IMAGE — like banner1/banner2 */
+.codepenBackground {
+  position: absolute;
+  inset: 0;
+  background-image: url("https://images.unsplash.com/photo-1543158266-0066955047b1?auto=format&fit=crop&w=2340&q=80");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed; /* IMPORTANT for parallax */
+  filter: brightness(0.75);
+  z-index: 0;
+}
+
+/* For iOS fixes */
+@supports (-webkit-overflow-scrolling: touch) {
+  .codepenBackground {
+    background-attachment: scroll;
+  }
+}
+
+/* KEEP YOUR FLOATING BLOBS */
+.blueBlob {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 300px;
+  height: 300px;
+  background: #bfdbfe;
+  border-radius: 9999px;
+  mix-blend-mode: multiply;
+  filter: blur(80px);
+  opacity: 0.2;
+  animation: blobPulse 8s infinite ease-in-out;
+  z-index: 1;
+}
+
+.purpleBlob {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 300px;
+  height: 300px;
+  background: #e9d5ff;
+  border-radius: 9999px;
+  mix-blend-mode: multiply;
+  filter: blur(80px);
+  opacity: 0.2;
+  animation: blobPulse 10s infinite ease-in-out;
+  z-index: 1;
+}
+
+@keyframes blobPulse {
+  0% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(20px, -20px) scale(1.1); }
+  100% { transform: translate(0, 0) scale(1); }
+}
