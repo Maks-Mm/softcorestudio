@@ -1,20 +1,13 @@
 "use client";
 
 import Hero from './components/Hero';
-import Services from './components/Services';
-import TechStack from './components/TechStack';
-import WhyChooseUs from './components/WhyChooseUs';
-import ContactForm from './components/ContactForm';
-import GlassButton from './components/GlassButton';
 
 export default function Home() {
   return (
+      //<Services />
     <main className="min-h-screen">
       <Hero />
-      <Services />
-      <TechStack />
-      <WhyChooseUs />
-      <ContactForm />
+
       
       {/* Footer */}
       <footer className="bg-gray-900 text-white py-12 px-4">

@@ -1,7 +1,6 @@
-//app/components/Services.jsx
+//app/sections/Services.tsx
 
 import { Monitor, ShoppingCart, Cpu, Zap, Shield, TrendingUp } from 'lucide-react';
-import GlassButton from './GlassButton';
 
 const services = [
   {
@@ -97,9 +96,9 @@ export default function Services() {
 
               <div className="flex items-center justify-between pt-6 border-t border-gray-100">
                 <span className="text-2xl font-bold text-gray-900">{service.price}</span>
-                <GlassButton className="px-6 py-2 bg-gradient-to-r from-blue-500 to-purple-500 text-white rounded-lg font-semibold hover:shadow-lg transition-shadow">
+                <button className="px-6 py-2 bg-gradient-to-r from-blue-500 to-purple-500 text-white rounded-lg font-semibold hover:shadow-lg transition-shadow">
                   Learn More
-                </GlassButton>
+                </button>
               </div>
             </div>
           ))}
