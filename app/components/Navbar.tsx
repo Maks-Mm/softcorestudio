@@ -3,68 +3,45 @@
 import React from "react";
 import { useStickyNav } from "../hooks/useStickyNav";
 import { useSmoothScroll } from "../hooks/useSmoothScroll";
+import "../styles/Navbar.css";
 
-interface NavbarProps {
-  onStartProjectClick?: () => void;
-}
-
-const Navbar: React.FC<NavbarProps> = ({ onStartProjectClick }) => {
-  // ✅ use hooks inside the component
+export default function Navbar() {
   const isSticky = useStickyNav("home");
   const scrollTo = useSmoothScroll();
 
   return (
-    <nav
-      className={`w-full top-0 left-0 z-50 transition-all duration-300 ${
-        isSticky ? "fixed bg-black/20" : "absolute bg-transparent"
-      }`}
-    >
-      <div className="container mx-auto px-4 py-4 flex justify-end items-center">
-        <ul className="flex space-x-4">
-          <li>
-            <button
-              onClick={() => scrollTo("home")}
-              className="text-antiwhite border-b-0 hover:text-imperialred transition-colors duration-200"
-            >
-              Home
-            </button>
+    <nav className={`top-nav animated fadeInDown clearfix ${isSticky ? "sticky" : ""}`}>
+      <div className="container">
+        <ul className="list-unstyled list-inline">
+
+          <li className="list-inline-item">
+            <a onClick={() => scrollTo("home")} className="js-scroll">Home</a>
           </li>
-          <li>
-            <button
-              onClick={() => scrollTo("services")}
-              className="text-antiwhite border-b-0 hover:text-imperialred transition-colors duration-200"
-            >
-              Services
-            </button>
+
+          <li className="list-inline-item">
+            <a onClick={() => scrollTo("services")} className="js-scroll">Services</a>
           </li>
-          <li>
-            <button
-              onClick={() => scrollTo("contact")}
-              className="text-antiwhite border-b-0 hover:text-imperialred transition-colors duration-200"
-            >
-              Contact
-            </button>
+
+          <li className="list-inline-item">
+            <a onClick={() => scrollTo("contact")} className="js-scroll">Contact</a>
           </li>
-          <li>
-            <button
-              onClick={() => scrollTo("portfolio")}
-              className="text-antiwhite border-b-0 hover:text-imperialred transition-colors duration-200"
-            >
-              Portfolio
-            </button>
+
+          <li className="list-inline-item">
+            <a onClick={() => scrollTo("portfolio")} className="js-scroll">Portfolio</a>
           </li>
-          <li>
-            <button
-              onClick={onStartProjectClick}
-              className="bg-candyred text-white px-4 py-1 rounded hover:bg-imperialred transition-colors duration-200"
+
+          <li className="list-inline-item">
+            <a
+              className="btn signup-btn btn-danger btn-sm"
+              data-toggle="modal"
+              data-target="#signup_form_modal"
             >
               Start a Project
-            </button>
+            </a>
           </li>
+
         </ul>
       </div>
     </nav>
   );
-};
-
-export default Navbar;
+}

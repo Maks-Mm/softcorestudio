@@ -1,12 +1,12 @@
 //app/components/Hero.tsx
+
 import React from "react";
 
 interface HeroProps {
-  onQuoteClick?: () => void; // callback for "Get a Quote Now" button
-  onServicesClick?: () => void; // callback for "See Our Services" button
+  onQuoteClick?: () => void;
 }
 
-const Hero: React.FC<HeroProps> = ({ onQuoteClick, onServicesClick }) => {
+const Hero: React.FC<HeroProps> = ({ onQuoteClick }) => {
   return (
     <header
       id="home"
@@ -19,29 +19,44 @@ const Hero: React.FC<HeroProps> = ({ onQuoteClick, onServicesClick }) => {
         <h1 className="text-candyred text-5xl md:text-6xl lg:text-7xl font-bold uppercase tracking-tight leading-tight mb-4">
           Digital Product Delivery
         </h1>
+
         <p className="text-antiwhite text-lg md:text-xl mb-2">
           From Concept to Global Deployment.
         </p>
+
         <p className="text-antiwhite text-lg md:text-xl mb-6">
           We build scalable platforms and services for private and global clients.
         </p>
+
         <div className="flex flex-col sm:flex-row justify-center gap-4">
-          <button
+
+          {/* Get a Quote Button */}
+
+
+          <a
+            href="#"
             onClick={onQuoteClick}
-            className="bg-imperialred hover:bg-candyred text-white font-semibold py-3 px-6 rounded-md transition-colors duration-300"
+            className="btn btn-primary btn-lg btn-block"
+            data-toggle="modal"
+            data-target="#speakers_modal"
           >
             Get a Quote Now
-          </button>
-          <button
-            onClick={onServicesClick}
-            className="bg-white text-gunmetal font-semibold py-3 px-6 rounded-md hover:bg-gray-100 transition-colors duration-300"
+            View Full Service List
+          </a>
+
+          {/* View Full Service List (Bootstrap-styled modal trigger) */}
+          <a
+            href="#"
+            className="btn btn-primary btn-lg btn-block"
+            data-toggle="modal"
+            data-target="#speakers_modal"
           >
-            See Our Services
-          </button>
+            View Full Service List
+          </a>
+
         </div>
       </div>
     </header>
-
   );
 };
 
