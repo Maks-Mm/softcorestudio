@@ -24,22 +24,30 @@
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* nav list */
+/* Container adjustment */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+/* nav list - MOVED LEFT */
 .list-inline {
   display: flex;
-  gap: 1rem;
-  justify-content: flex-end;
+  gap: 2rem; /* Increased gap for better spacing */
+  justify-content: flex-start; /* Changed from flex-end */
   align-items: center;
+  padding-left: 1rem; /* Optional: extra left spacing */
 }
 
 .list-inline-item {
   list-style: none;
 }
 
-/* NAV LINKS (IMPORTANT — matches your HTML) */
+/* NAV LINKS */
 .top-nav a {
   font-size: 1.1rem;
-  color: #EDF2F4; /* antiwhite */
+  color: #EDF2F4;
   text-decoration: none;
   border-bottom: 3px solid transparent;
   padding-bottom: 5px;
@@ -48,15 +56,16 @@
 }
 
 .top-nav a:hover {
-  color: #EF233C; /* imperial red */
+  color: #EF233C;
   border-color: #EF233C;
 }
 
 /* SIGNUP BUTTON */
 .signup-btn {
-  padding: .25em .5em;
+  padding: .5em 1em; /* Slightly larger for better appearance */
   border-radius: 2px;
   color: #EDF2F4 !important;
   border-bottom: 1px solid #D90429 !important;
   border-color: #D90429 !important;
+  margin-left: 1rem; /* Space from other items */
 }
