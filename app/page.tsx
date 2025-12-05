@@ -1,5 +1,6 @@
 "use client";
 
+import Banner from './components/Banner';
 import Hero from './components/Hero';
 
 export default function Home() {
@@ -7,6 +8,7 @@ export default function Home() {
       //<Services />
     <main className="min-h-screen">
       <Hero />
+      <Banner />
 
       
       {/* Footer */}
