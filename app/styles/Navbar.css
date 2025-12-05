@@ -35,7 +35,7 @@
 .list-inline {
   display: flex;
   gap: 2rem; /* Increased gap for better spacing */
-  justify-content: flex-start; /* Changed from flex-end */
+  justify-content: flex-end ; /* Changed from flex-end */
   align-items: center;
   padding-left: 1rem; /* Optional: extra left spacing */
 }

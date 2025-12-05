@@ -1,0 +1,101 @@
+/* HERO WRAPPER */
+.hero {
+    background-image: linear-gradient(rgba(43,45,66,0.75), rgba(43,45,66,0.75)),
+        url("https://images.unsplash.com/photo-1616469832301-ffaeadc68cf3?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0");
+    background-size: cover;
+    background-position: bottom;
+    background-attachment: fixed;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    padding-top: 125px;
+}
+
+/* CONTAINER */
+.hero-container {
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+    text-align: center;
+    animation: fadeInUp 0.5s ease;
+}
+
+/* TITLE */
+.hero-title {
+    color: #D90429; /* candy red */
+    font-size: 4rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    text-shadow: 0px 1px 1px rgba(0,0,0,0.5);
+    letter-spacing: -1px;
+    line-height: .9;
+    margin-bottom: 1rem;
+}
+
+/* SUBTEXT */
+.hero-subtext {
+    color: #EDF2F4; /* antiwhite */
+    font-size: 1.25rem;
+    margin-bottom: 0.8rem;
+}
+
+/* BUTTON GROUP */
+.hero-buttons {
+    margin-top: 1.5rem;
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+/* BUTTON BASE */
+.hero-btn {
+    padding: 0.9rem 2rem;
+    font-size: 1.2rem;
+    border-radius: 2px;
+    cursor: pointer;
+    border: none;
+}
+
+/* PRIMARY BUTTON (RED) */
+.hero-btn-primary {
+    background-color: #EF233C; /* imperial red */
+    color: #fff;
+}
+
+/* SECONDARY BUTTON */
+.hero-btn-secondary {
+    background-color: #fafafa;
+    color: #2B2D42; /* gunmetal */
+    border: 1px solid #ccc;
+}
+
+/* Secondary hover */
+.hero-btn-secondary:hover {
+    background-color: #ffffff;
+}
+
+/* ANIMATION */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* MOBILE */
+@media only screen and (max-width: 768px) {
+    .hero {
+        padding-top: 50px;
+        min-height: 400px;
+    }
+
+    .hero-title {
+        font-size: 2.4rem;
+        margin-top: 40px;
+    }
+}
