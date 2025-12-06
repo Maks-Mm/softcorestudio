@@ -1,0 +1,30 @@
+<h2 className="text-2xl font-bold mb-2">
+  Let’s Build Something Great Together 🚀
+</h2>
+<p className="text-gray-600 mb-6">
+  Share a few details and we’ll prepare a custom proposal for your project.
+</p>
+
+<label className="block text-gray-700">Full Name</label>
+<input placeholder="John Doe" ... />
+
+<label className="block text-gray-700">Email</label>
+<input placeholder="you@example.com" ... />
+<small className="text-gray-500">We’ll respond within 24 hours.</small>
+
+<label>Which best describes you?</label>
+<select>
+  <option>Startup Founder</option>
+  <option>E-commerce Business</option>
+  <option>Agency / Freelancer</option>
+  <option>Enterprise</option>
+</select>
+
+<label>Estimated Budget</label>
+<div>
+  <input type="radio" value="starter" /> Starter (&lt; $5k)
+  <input type="radio" value="growth" /> Growth ($5k–15k)
+  <input type="radio" value="enterprise" /> Enterprise ($15k+)
+</div>
+
+<button>Get My Project Estimate</button>
