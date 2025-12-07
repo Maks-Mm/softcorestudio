@@ -1,4 +1,5 @@
 // src/components/SignupModal.tsx
+"use client"
 import React, { useState } from "react";
 
 interface SignupModalProps {
@@ -23,8 +24,7 @@ const SignupModal: React.FC<SignupModalProps> = ({ isOpen, onClose }) => {
       budget,
     };
     console.log("Form Submitted:", formData);
-    // You can send formData to backend here
-    onClose(); // Close modal after submit
+    onClose();
   };
 
   if (!isOpen) return null;
@@ -32,69 +32,88 @@ const SignupModal: React.FC<SignupModalProps> = ({ isOpen, onClose }) => {
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
       <div className="bg-white rounded-lg shadow-lg w-full max-w-lg p-6 relative">
+        {/* Close Button */}
         <button
           className="absolute top-3 right-3 text-gray-500 hover:text-gray-700"
           onClick={onClose}
         >
           &times;
         </button>
-        <h2 className="text-2xl font-bold mb-4">Start Your Project Today!</h2>
+
+        {/* Title */}
+        <h2 className="text-2xl font-bold mb-2">
+          Let’s Build Something Great Together 🚀
+        </h2>
+        <p className="text-gray-600 mb-6">
+          Tell us a few details so we can prepare a personalized estimate for your project.
+        </p>
+
+        {/* Form */}
         <form onSubmit={handleSubmit} className="space-y-4">
+          {/* First Name */}
           <div>
-            <label className="block text-gray-700">First Name:</label>
+            <label className="block text-gray-700">First Name</label>
             <input
               type="text"
               value={firstName}
               onChange={(e) => setFirstName(e.target.value)}
-              placeholder="First Name"
+              placeholder="John"
               className="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-red-500"
               required
             />
           </div>
 
+          {/* Last Name */}
           <div>
-            <label className="block text-gray-700">Last Name:</label>
+            <label className="block text-gray-700">Last Name</label>
             <input
               type="text"
               value={lastName}
               onChange={(e) => setLastName(e.target.value)}
-              placeholder="Last Name"
+              placeholder="Doe"
               className="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-red-500"
               required
             />
           </div>
 
+          {/* Email */}
           <div>
-            <label className="block text-gray-700">Email:</label>
+            <label className="block text-gray-700">Email</label>
             <input
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              placeholder="Email"
+              placeholder="you@example.com"
               className="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-red-500"
               required
             />
-            <small className="text-gray-500">Your email will be used as a primary contact.</small>
+            <small className="text-gray-500">
+              We’ll get back to you within 24 hours.
+            </small>
           </div>
 
+          {/* Profession */}
           <div>
-            <label className="block text-gray-700">Your Role/Company Type:</label>
+            <label className="block text-gray-700">What best describes you?</label>
             <select
               value={profession}
               onChange={(e) => setProfession(e.target.value)}
               className="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-red-500"
               required
             >
-              <option value="">---</option>
-              <option value="Tech Startup">Tech Startup</option>
-              <option value="Enterprise Client">Enterprise Client</option>
-              <option value="Small/Medium Business">Small/Medium Business</option>
-              <option value="Non-Profit/NGO">Non-Profit/NGO</option>
+              <option value="">Select...</option>
+              <option value="Startup Founder">Startup Founder</option>
+              <option value="E-commerce Business">E-commerce Business</option>
+              <option value="Agency / Freelancer">Agency / Freelancer</option>
+              <option value="Enterprise Company">Enterprise Company</option>
+              <option value="Non-Profit / NGO">Non-Profit / NGO</option>
             </select>
           </div>
 
+          {/* Budget */}
           <div className="flex flex-col space-y-2">
-            <label className="block text-gray-700">Project Budget:</label>
+            <label className="block text-gray-700">Estimated Budget</label>
+
             <label className="inline-flex items-center space-x-2">
               <input
                 type="radio"
@@ -103,8 +122,9 @@ const SignupModal: React.FC<SignupModalProps> = ({ isOpen, onClose }) => {
                 checked={budget === "small"}
                 onChange={() => setBudget("small")}
               />
-              <span>Small Project Budget (&lt; $10k)</span>
+              <span>Starter Budget (&lt; $5k)</span>
             </label>
+
             <label className="inline-flex items-center space-x-2">
               <input
                 type="radio"
@@ -113,15 +133,27 @@ const SignupModal: React.FC<SignupModalProps> = ({ isOpen, onClose }) => {
                 checked={budget === "medium"}
                 onChange={() => setBudget("medium")}
               />
-              <span>Medium/Large Project Budget (&gt; $10k)</span>
+              <span>Growth Budget ($5k – $15k)</span>
+            </label>
+
+            <label className="inline-flex items-center space-x-2">
+              <input
+                type="radio"
+                name="budget"
+                value="large"
+                checked={budget === "large"}
+                onChange={() => setBudget("large")}
+              />
+              <span>Enterprise Budget ($15k+)</span>
             </label>
           </div>
 
+          {/* Submit Button */}
           <button
             type="submit"
             className="w-full bg-red-600 hover:bg-red-700 text-white py-2 px-4 rounded font-semibold transition"
           >
-            Submit for Quote
+            Get My Project Estimate
           </button>
         </form>
       </div>

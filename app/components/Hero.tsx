@@ -2,10 +2,10 @@ import React from "react";
 import "../styles/Hero.css";
 
 interface HeroProps {
-  onQuoteClick?: () => void;
+  onOpen?: () => void;
 }
 
-const Hero: React.FC<HeroProps> = ({ onQuoteClick }) => {
+const Hero: React.FC<HeroProps> = ({ onOpen }) => {
   return (
     <header id="home" className="hero">
       <div className="hero-container">
@@ -21,9 +21,7 @@ const Hero: React.FC<HeroProps> = ({ onQuoteClick }) => {
           <button
             type="button"
             className="hero-btn hero-btn-primary"
-            onClick={onQuoteClick}
-            data-toggle="modal"
-            data-target="#signup_form_modal"
+            onClick={onOpen}
           >
             Get a Quote Now
           </button>

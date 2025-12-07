@@ -3,7 +3,13 @@
 import React from "react";
 import "../styles/Banner.css";
 
-export default function Banner() {
+
+interface BannerProps {
+  onOpen?: () => void;
+}
+
+
+export default function ({ onOpen }: BannerProps) {
   return (
     <div className="w-full">
       {/* Top Hero */}
@@ -26,8 +32,7 @@ export default function Banner() {
           <button
             type="button"
             className="btn btn-lg btn-danger mt-4"
-            data-toggle="modal"
-            data-target="#signup_form_modal"
+            onClick={onOpen}
           >
             Get a Quote Now
           </button>
