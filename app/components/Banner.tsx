@@ -9,7 +9,8 @@ interface BannerProps {
 }
 
 
-export default function ({ onOpen }: BannerProps) {
+export default function Banner({ onOpen }: BannerProps) {
+
   return (
     <div className="w-full">
       {/* Top Hero */}
@@ -29,13 +30,8 @@ export default function ({ onOpen }: BannerProps) {
           <p className="lead mt-4 mb-6 text-gray-200">
             We build scalable platforms and services for private or global clients.
           </p>
-          <button
-            type="button"
-            className="btn btn-lg btn-danger mt-4"
-            onClick={onOpen}
-          >
-            Get a Quote Now
-          </button>
+         <button onClick={onOpen}>Get a Quote Now</button>
+
           <button
             type="button"
             className="js-scroll btn btn-lg btn-default mt-4 ml-3"

@@ -1,5 +1,16 @@
 /* Banner.css - extracted styles from CodePen version */
 
+.hero {
+  position: relative;
+  z-index: 1;
+}
+
+.top-hero {
+  position: relative;
+  z-index: 1;
+}
+
+
 html {
   font-size: 14px;
 }
