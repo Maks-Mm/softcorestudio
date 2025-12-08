@@ -50,6 +50,13 @@ const SignupModal: React.FC<SignupModalProps> = ({ isOpen, onClose }) => {
     };
   }, [isOpen]);
 
+  // Initialize AOS if needed
+  useEffect(() => {
+    if (isOpen && typeof window !== 'undefined' && window.AOS) {
+      window.AOS.refresh();
+    }
+  }, [isOpen]);
+
   const validateForm = (): boolean => {
     const newErrors: FormErrors = {};
     
@@ -115,7 +122,13 @@ const SignupModal: React.FC<SignupModalProps> = ({ isOpen, onClose }) => {
 
   return (
     <div className="signup-modal-overlay" onClick={onClose}>
-      <div className="signup-modal-container" onClick={e => e.stopPropagation()}>
+      <div 
+        className="signup-modal-container" 
+        onClick={e => e.stopPropagation()}
+        data-aos="zoom-in"
+        data-aos-duration="400"
+        data-aos-easing="ease-out-cubic"
+      >
         <button 
           className="signup-modal-close" 
           onClick={onClose}
@@ -131,11 +144,16 @@ const SignupModal: React.FC<SignupModalProps> = ({ isOpen, onClose }) => {
         </p>
 
         {submitSuccess ? (
-          <div className="success-message" style={{
-            textAlign: 'center',
-            padding: '2rem',
-            color: '#10b981'
-          }}>
+          <div 
+            className="success-message" 
+            style={{
+              textAlign: 'center',
+              padding: '2rem',
+              color: '#10b981'
+            }}
+            data-aos="fade-up"
+            data-aos-delay="200"
+          >
             <div style={{ fontSize: '3rem', marginBottom: '1rem' }}>🎉</div>
             <h3 style={{ fontSize: '1.5rem', fontWeight: '600', marginBottom: '0.5rem' }}>
               Thank You!
@@ -144,7 +162,7 @@ const SignupModal: React.FC<SignupModalProps> = ({ isOpen, onClose }) => {
           </div>
         ) : (
           <form onSubmit={handleSubmit} className="signup-form" noValidate>
-            <div>
+            <div data-aos="fade-up" data-aos-delay="50">
               <label className="signup-label">First Name *</label>
               <input
                 type="text"
@@ -159,7 +177,7 @@ const SignupModal: React.FC<SignupModalProps> = ({ isOpen, onClose }) => {
               )}
             </div>
 
-            <div>
+            <div data-aos="fade-up" data-aos-delay="100">
               <label className="signup-label">Last Name *</label>
               <input
                 type="text"
@@ -174,7 +192,7 @@ const SignupModal: React.FC<SignupModalProps> = ({ isOpen, onClose }) => {
               )}
             </div>
 
-            <div>
+            <div data-aos="fade-up" data-aos-delay="150">
               <label className="signup-label">Email *</label>
               <input
                 type="email"
@@ -190,7 +208,7 @@ const SignupModal: React.FC<SignupModalProps> = ({ isOpen, onClose }) => {
               )}
             </div>
 
-            <div>
+            <div data-aos="fade-up" data-aos-delay="200">
               <label className="signup-label">What best describes you? *</label>
               <select
                 value={formData.profession}
@@ -211,7 +229,11 @@ const SignupModal: React.FC<SignupModalProps> = ({ isOpen, onClose }) => {
               )}
             </div>
 
-            <div className="signup-budget-group">
+            <div 
+              className="signup-budget-group" 
+              data-aos="fade-up" 
+              data-aos-delay="250"
+            >
               <label className="signup-label">Estimated Budget *</label>
 
               <label className="signup-radio">
@@ -260,6 +282,8 @@ const SignupModal: React.FC<SignupModalProps> = ({ isOpen, onClose }) => {
               type="submit" 
               className="signup-submit"
               disabled={isSubmitting}
+              data-aos="fade-up"
+              data-aos-delay="300"
             >
               {isSubmitting ? (
                 <>
@@ -271,12 +295,16 @@ const SignupModal: React.FC<SignupModalProps> = ({ isOpen, onClose }) => {
               )}
             </button>
             
-            <div style={{ 
-              marginTop: '1rem', 
-              fontSize: '0.75rem', 
-              color: '#9ca3af',
-              textAlign: 'center'
-            }}>
+            <div 
+              style={{ 
+                marginTop: '1rem', 
+                fontSize: '0.75rem', 
+                color: '#9ca3af',
+                textAlign: 'center'
+              }}
+              data-aos="fade-up"
+              data-aos-delay="350"
+            >
               By submitting, you agree to our Privacy Policy and Terms of Service.
             </div>
           </form>
