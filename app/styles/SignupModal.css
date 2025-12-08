@@ -15,7 +15,8 @@
 
 /* Container */
 .signup-modal-container {
-  background: #ffffff;
+  background: url("https://images.unsplash.com/photo-1471897488648-5eae4ac6686b?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D")
+              center/cover no-repeat;
   border-radius: 1rem;
   width: 100%;
   max-width: 36rem;
@@ -25,7 +26,13 @@
   animation: slideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   max-height: 90vh;
   overflow-y: auto;
+
+  /* Add a soft dark overlay so text stays readable */
+  background-blend-mode: overlay;
+  background-color: rgba(0, 0, 0, 0.55);
+  color: white;
 }
+
 
 /* Close Button */
 .signup-modal-close {
