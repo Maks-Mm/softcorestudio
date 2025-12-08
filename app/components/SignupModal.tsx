@@ -3,6 +3,15 @@
 import React, { useState, useEffect } from "react";
 import "../styles/SignupModal.css";
 
+declare global {
+  interface Window {
+    AOS: {
+      refresh: () => void;
+      init: (options: any) => void;
+    };
+  }
+}
+
 interface SignupModalProps {
   isOpen: boolean;
   onClose: () => void;
