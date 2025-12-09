@@ -1,19 +1,17 @@
+//app/sections/portfolio.tsx
 "use client";
 
 import React from "react";
 import "../styles/Portfolio.css";
 
-// Define props interface
 interface PortfolioProps {
-  onOpen?: () => void; // optional callback
+  onOpen?: () => void;
 }
 
 const Portfolio: React.FC<PortfolioProps> = ({ onOpen }) => {
   const openPortfolio = () => {
-    // Call the onOpen callback if provided
     if (onOpen) onOpen();
 
-    // Open the portfolio in a new tab
     window.open(
       "https://mmpryshchepa-giuz.vercel.app/",
       "_blank",

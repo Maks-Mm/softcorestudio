@@ -1,16 +1,13 @@
-//app/components/Banner.tsx
+"use client";
 
 import React from "react";
 import "../styles/Banner.css";
-
 
 interface BannerProps {
   onOpen?: () => void;
 }
 
-
 export default function Banner({ onOpen }: BannerProps) {
-
   return (
     <div className="w-full">
       {/* Top Hero */}
@@ -26,11 +23,16 @@ export default function Banner({ onOpen }: BannerProps) {
           <h1 className="text-red-600 font-bold uppercase w-1/2 leading-none tracking-tight text-6xl drop-shadow-md">
             Soft Core Studio
           </h1>
-          <p className="lead mt-4 text-gray-200">From Concept to Global Deployment.</p>
+          <p className="lead mt-4 text-gray-200">
+            From Concept to Global Deployment.
+          </p>
           <p className="lead mt-4 mb-6 text-gray-200">
             We build scalable platforms and services for private or global clients.
           </p>
-         <button onClick={onOpen}>Get a Quote Now</button>
+
+          <button onClick={onOpen} className="btn btn-primary">
+            Get a Quote Now
+          </button>
 
           <button
             type="button"
@@ -42,7 +44,7 @@ export default function Banner({ onOpen }: BannerProps) {
         </div>
       </header>
 
-      {/* Services Section */}
+      {/* Services */}
       <section
         id="services"
         className="banner speakers py-12 text-center text-white bg-cover bg-center"
@@ -52,31 +54,14 @@ export default function Banner({ onOpen }: BannerProps) {
         }}
       >
         <div className="wrapper">
-          <h2 className="mb-6 text-4xl uppercase font-bold">End-to-End Digital Solutions</h2>
+          <h2 className="mb-6 text-4xl uppercase font-bold">
+            End-to-End Digital Solutions
+          </h2>
           <a
             href="#"
             className="btn btn-primary btn-lg btn-block"
-            data-toggle="modal"
-            data-target="#speakers_modal"
           >
             View Full Service List
-          </a>
-        </div>
-      </section>
-
-      {/* Portfolio */}
-      <section
-        id="portfolio"
-        className="banner learn py-12 text-center text-white bg-cover bg-center"
-        style={{
-          backgroundImage:
-            "linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1616469832424-6927678c6b4b?q=80&w=1170&auto=format&fit=crop')",
-        }}
-      >
-        <div className="wrapper">
-          <h2 className="mb-6 text-4xl uppercase font-bold">Our Success Stories</h2>
-          <a href="#" className="btn btn-danger btn-lg btn-block">
-            View Portfolio
           </a>
         </div>
       </section>
@@ -91,12 +76,12 @@ export default function Banner({ onOpen }: BannerProps) {
         }}
       >
         <div className="wrapper">
-          <h2 className="mb-6 text-4xl uppercase font-bold">Ready to Get Started?</h2>
+          <h2 className="mb-6 text-4xl uppercase font-bold">
+            Ready to Get Started?
+          </h2>
           <a
             href="#"
             className="btn btn-primary btn-lg btn-block"
-            data-toggle="modal"
-            data-target="#signup_form_modal"
           >
             Contact Us
           </a>
@@ -106,7 +91,8 @@ export default function Banner({ onOpen }: BannerProps) {
       {/* Footer */}
       <footer className="py-6 text-center bg-[#2B2D42] text-gray-200">
         <p className="text-sm">
-          <span id="copyright-year">2025</span> Soft Core Studio, All Rights Reserved
+          <span id="copyright-year">2025</span> Soft Core Studio, All Rights
+          Reserved
         </p>
       </footer>
     </div>
