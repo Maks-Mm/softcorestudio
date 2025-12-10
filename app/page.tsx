@@ -9,7 +9,6 @@ import Hero from "./components/Hero";
 import Portfolio from "./sections/Portfolio";
 import AOS from "aos";
 import { useToast } from "./components/ToastProvider";
-
 export default function Home() {
   const [open, setOpen] = useState(false);
   const { showSuccess, showError, showInfo } = useToast();
@@ -40,13 +39,13 @@ export default function Home() {
         onError={() => showError("Please fill in all required fields.", 3000)}
       />
 
-      {/* Hero */}
       <Hero onOpen={handleGetQuote} />
-
-      {/* Portfolio */}
+      {/* Hero */}
       <Portfolio
         onOpen={() => showInfo("Viewing portfolio...", 2000)}
       />
+
+      
 
       {/* Banner + Services + Contact + Footer */}
       <Banner onOpen={handleGetQuote} />

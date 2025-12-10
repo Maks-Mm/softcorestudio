@@ -1,56 +1,12 @@
-/* Portfolio.css */
-.portfolio-section {
-  position: relative;
-  z-index: 50;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  text-align: center;
-  padding: 0 1.5rem;
-
-  /* FIXED: Changed to cover for proper sizing */
-  background: url("https://images.unsplash.com/photo-1471897488648-5eae4ac6686b?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D")
-              center/cover no-repeat;
-  
-  /* Optional: Add overlay for better text readability */
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0, 0, 0, 0.4);
-    z-index: 1;
-  }
-}
-
-.content-wrapper {
-  position: relative;
-  z-index: 999;
-}
-
-.title {
-  font-size: 2.25rem;
-  font-weight: bold;
-  color: #ffffff;
-  text-transform: uppercase;
-  letter-spacing: 0.025em;
-  text-shadow: 0 2px 8px rgba(0,0,0,0.7);
-  margin-bottom: 1.5rem;
-}
-
-@media (min-width: 768px) {
-  .title {
-    font-size: 3rem;
-  }
+/* keep your existing button styles, only small spacing change handled above */
+.portfolio-button {
+  flex: 0 0 auto;
 }
 
 .portfolio-button {
   display: inline-block;
-  background-color: #dc2626; /* candyred */
+  background-color: #dc2626;
+  /* candyred */
   color: #ffffff;
   font-weight: 600;
   padding: 0.75rem 2rem;
@@ -58,16 +14,17 @@
   font-size: 1.125rem;
   cursor: pointer;
   border: none;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease;
   position: relative;
   z-index: 999;
 }
 
 .portfolio-button:hover {
-  background-color: #b91c1c; /* imperialred */
+  background-color: #b91c1c;
+  /* imperialred */
   transform: translateY(-2px);
-  box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
 .portfolio-button:active {
@@ -79,6 +36,3 @@
   outline-offset: 2px;
 }
 
-.hidden {
-  display: none;
-}

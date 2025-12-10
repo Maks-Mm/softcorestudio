@@ -1,7 +1,7 @@
-//app/sections/portfolio.tsx
+// ...existing code...
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import "../styles/Portfolio.css";
 
 interface PortfolioProps {
@@ -9,9 +9,11 @@ interface PortfolioProps {
 }
 
 const Portfolio: React.FC<PortfolioProps> = ({ onOpen }) => {
+  const [showPortfolio, setShowPortfolio] = useState(false);
+
   const openPortfolio = () => {
     if (onOpen) onOpen();
-
+    setShowPortfolio(true); // show in-page section as well
     window.open(
       "https://mmpryshchepa-giuz.vercel.app/",
       "_blank",
@@ -20,15 +22,13 @@ const Portfolio: React.FC<PortfolioProps> = ({ onOpen }) => {
   };
 
   return (
-    <section id="portfolio" className="portfolio-section">
-      <div className="content-wrapper">
-        <h2 className="title">Our Success Stories</h2>
-
+    <div>
+      {!showPortfolio && (
         <button onClick={openPortfolio} className="portfolio-button">
           View Portfolio
         </button>
-      </div>
-    </section>
+      )}
+    </div>
   );
 };
 
