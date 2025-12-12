@@ -1,38 +1,96 @@
-/* keep your existing button styles, only small spacing change handled above */
-.portfolio-button {
-  flex: 0 0 auto;
+/* Portfolio Section Container */
+.portfolio-wrapper {
+  text-align: center;
+  padding: 2rem 1rem;
+  color: #fff;
 }
 
-.portfolio-button {
-  display: inline-block;
-  background-color: #dc2626;
-  /* candyred */
-  color: #ffffff;
-  font-weight: 600;
-  padding: 0.75rem 2rem;
-  border-radius: 0.375rem;
-  font-size: 1.125rem;
-  cursor: pointer;
-  border: none;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s ease;
+/* Titles */
+.portfolio-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+}
+
+.portfolio-subtitle {
+  color: #dcdcdc;
+  margin-bottom: 2rem;
+  font-size: 1.1rem;
+}
+
+/* Grid */
+.portfolio-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  padding: 1rem 0;
+}
+
+/* Card */
+.portfolio-card {
   position: relative;
-  z-index: 999;
+  cursor: pointer;
+  background: #1f2030;
+  border-radius: 16px;
+  overflow: hidden;
+  transition: transform .35s ease, box-shadow .35s ease;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
 }
 
-.portfolio-button:hover {
-  background-color: #b91c1c;
-  /* imperialred */
-  transform: translateY(-2px);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+.portfolio-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 10px 26px rgba(0,0,0,0.45);
 }
 
-.portfolio-button:active {
-  transform: translateY(0);
+/* Image */
+.portfolio-image {
+  width: 100%;
+  height: 180px;
+  background-size: cover;
+  background-position: center;
+  transition: transform .45s ease;
 }
 
-.portfolio-button:focus {
-  outline: 2px solid white;
-  outline-offset: 2px;
+.portfolio-card:hover .portfolio-image {
+  transform: scale(1.08);
 }
 
+/* Content */
+.portfolio-content {
+  padding: 1.3rem;
+  text-align: left;
+}
+
+.portfolio-content h3 {
+  font-size: 1.35rem;
+  margin: 0 0 0.5rem;
+  font-weight: 700;
+  color: #D90429;
+}
+
+.portfolio-content p {
+  font-size: 0.9rem;
+  color: #ddd;
+  line-height: 1.4;
+}
+
+.portfolio-link {
+  display: inline-block;
+  margin-top: 0.9rem;
+  color: #EF233C;
+  font-size: 0.95rem;
+  font-weight: 600;
+  transition: color .25s;
+}
+
+.portfolio-card:hover .portfolio-link {
+  color: #fff;
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .portfolio-image {
+    height: 150px;
+  }
+}

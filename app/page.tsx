@@ -6,7 +6,6 @@ import { useState, useEffect } from "react";
 import Banner from "./components/Banner";
 import SignupModal from "./components/SignupModal";
 import Hero from "./components/Hero";
-import Portfolio from "./sections/Portfolio";
 import AOS from "aos";
 import { useToast } from "./components/ToastProvider";
 export default function Home() {
@@ -41,11 +40,9 @@ export default function Home() {
 
       <Hero onOpen={handleGetQuote} />
       {/* Hero */}
-      <Portfolio
-        onOpen={() => showInfo("Viewing portfolio...", 2000)}
-      />
 
-      
+
+
 
       {/* Banner + Services + Contact + Footer */}
       <Banner onOpen={handleGetQuote} />

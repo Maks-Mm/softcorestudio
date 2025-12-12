@@ -1,7 +1,7 @@
 import React from "react";
 import "../styles/Hero.css";
-import Port from "../sections/Port"; 
-import Portfolio from "../sections/Portfolio";
+
+//import Portfolio from "../sections/Portfolio";
 
 interface HeroProps {
   onOpen?: () => void;
@@ -18,10 +18,10 @@ const Hero: React.FC<HeroProps> = ({ onOpen }) => {
         <p className="hero-subtext">
           We build scalable platforms and services for private or global clients.
         </p>
-        <Port />
-        <Portfolio
+
+        {/* <Portfolio
           onOpen={() => console.log("Viewing portfolio...")}
-        />
+        /> */}
 
         <div className="hero-buttons">
           <button
