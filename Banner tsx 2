@@ -1,0 +1,154 @@
+"use client";
+
+import React from "react";
+import "../styles/Banner.css";
+
+interface BannerProps {
+  onOpen?: () => void;
+}
+
+export default function Banner({ onOpen }: BannerProps) {
+  const scrollTo = (id: string) => {
+    const el = document.getElementById(id);
+    if (el) el.scrollIntoView({ behavior: "smooth" });
+  };
+
+  const Portfolio = () => {
+    const portfolioItems = [
+      { id: 1, title: "Web Development", desc: "Custom web applications and platforms" },
+      { id: 2, title: "Mobile Apps", desc: "iOS and Android applications" },
+      { id: 3, title: "Cloud Solutions", desc: "Scalable cloud infrastructure" }
+    ];
+
+    return (
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {portfolioItems.map((item) => (
+          <div
+            key={item.id}
+            className="bg-white/10 backdrop-blur-sm p-6 rounded-lg hover:bg-white/20 transition"
+          >
+            <h3 className="text-2xl font-bold mb-2">{item.title}</h3>
+            <p className="text-gray-300">{item.desc}</p>
+          </div>
+        ))}
+      </div>
+    );
+  };
+
+  return (
+    <div className="w-full">
+      {/* HERO */}
+      <header
+        id="home"
+        className="relative h-screen flex items-center pt-[125px] bg-fixed bg-cover bg-bottom text-white"
+        style={{
+          backgroundImage:
+            "linear-gradient(rgba(43,45,66,0.75), rgba(43,45,66,0.75)), url('https://images.unsplash.com/photo-1616469832301-ffaeadc68cf3?q=80&w=1170&auto=format&fit=crop')",
+        }}
+      >
+        <div className="container mx-auto px-6 animate-fadeInUp">
+          <h1 className="text-red-600 font-bold uppercase w-3/4 md:w-1/2 leading-[0.9] tracking-tight text-6xl md:text-7xl drop-shadow-md">
+            Soft Core Studio
+          </h1>
+
+          <p className="mt-4 text-gray-200 text-lg">
+            From Concept to Global Deployment.
+          </p>
+          <p className="mt-4 mb-8 text-gray-200 text-lg">
+            We build scalable platforms and services for private or global clients.
+          </p>
+
+          <div className="flex flex-col sm:flex-row gap-4">
+            <button onClick={onOpen} className="btn btn-primary px-6 py-3">
+              Get a Quote Now
+            </button>
+
+            <button
+              type="button"
+              onClick={() => scrollTo("services")}
+              className="px-6 py-3 rounded-md bg-gray-200 text-black hover:bg-gray-100 transition"
+            >
+              See Our Services
+            </button>
+          </div>
+        </div>
+      </header>
+
+      {/* OFFERS → Updated Section from CodePen */}
+      <section
+        id="offers"
+        className="py-16 text-center text-white bg-cover bg-center"
+        style={{
+          backgroundImage:
+            "linear-gradient(rgba(217,4,41,0.45), rgba(217,4,41,0.45)), url('https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=1170&auto=format&fit=crop')",
+        }}
+      >
+        <div className="container mx-auto px-6">
+          <h2 className="text-4xl uppercase font-bold mb-10">Learn More About Us</h2>
+
+          <Portfolio />
+
+          <div className="mt-10">
+            <button
+              onClick={() => alert("Navigating to full portfolio page")}
+              className="px-8 py-4 rounded-md bg-[#EF233C] hover:bg-[#D90429] transition text-white font-semibold"
+            >
+              View Full Portfolio
+            </button>
+          </div>
+        </div>
+      </section>
+
+      {/* SERVICES */}
+      <section
+        id="services"
+        className="banner speakers py-16 text-center text-white bg-cover bg-center"
+        style={{
+          backgroundImage:
+            "linear-gradient(rgba(217,4,41,0.45), rgba(217,4,41,0.45)), url('https://images.unsplash.com/photo-1759139681761-852dd24340df?q=80&w=1170&auto=format&fit=crop')",
+        }}
+      >
+        <div className="container mx-auto px-6">
+          <h2 className="mb-6 text-4xl uppercase font-bold">
+            End-to-End Digital Solutions
+          </h2>
+
+          <button
+            onClick={() => scrollTo("locations")}
+            className="px-8 py-4 rounded-md bg-[#2B2D42] hover:bg-[#1f2030] transition inline-block"
+          >
+            View Full Service List
+          </button>
+        </div>
+      </section>
+
+      {/* CONTACT */}
+      <section
+        id="locations"
+        className="banner signup py-16 text-center text-white bg-cover bg-center"
+        style={{
+          backgroundImage:
+            "linear-gradient(rgba(217,4,41,0.45), rgba(217,4,41,0.45)), url('https://images.unsplash.com/photo-1487537708572-3c850b5e856e?auto=compress&fit=crop&w=1199&h=798')",
+        }}
+      >
+        <div className="container mx-auto px-6">
+          <h2 className="mb-6 text-4xl uppercase font-bold">
+            Ready to Get Started?
+          </h2>
+
+          <button
+            onClick={() => alert("Contact form would open here")}
+            className="px-8 py-4 rounded-md bg-[#2B2D42] hover:bg-[#1f2030] transition inline-block"
+          >
+            Contact Us
+          </button>
+        </div>
+      </section>
+
+      {/* FOOTER */}
+      <footer className="py-6 text-center bg-[#2B2D42] text-gray-200">
+        <p className="text-sm">© 2025 Soft Core Studio — All Rights Reserved</p>
+      </footer>
+    </div>
+  );
+}
