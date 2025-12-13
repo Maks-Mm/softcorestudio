@@ -1,28 +1,32 @@
-// src/sections/Contact.tsx
-import React from "react";
+//app/sections/Contact.tsx
+"use client";
 
 interface ContactProps {
-    openModal: () => void; // function to open the signup modal
+    openModal?: () => void;
 }
 
-const Contact: React.FC<ContactProps> = ({ openModal }) => {
+export default function Contact({ openModal }: ContactProps) {
+    const handleClick = () => {
+        openModal?.();
+    };
+
     return (
         <section
             id="contact"
-            className="relative flex items-center justify-center min-h-screen bg-candyred bg-opacity-80 bg-[url('https://images.unsplash.com/photo-1487537708572-3c850b5e856e?dpr=1&auto=compress&format&fit=crop&w=1199&h=798&q=80&cs=tinysrgb&crop=&bg=')] bg-center bg-cover p-6"
+            className="contact-section"
+            style={{
+                backgroundImage: "linear-gradient(rgba(217,4,41,0.8), rgba(217,4,41,0.8)), url('https://images.unsplash.com/photo-1487537708572-3c850b5e856e?dpr=1&auto=compress&format&fit=crop&w=1199&h=798&q=80&cs=tinysrgb&crop=&bg=')"
+            }}
         >
-            <div className="text-center text-white">
-                <h2 className="text-4xl font-bold uppercase mb-6">Ready to Get Started?</h2>
+            <div className="contact-content">
+                <h2 className="contact-title">Ready to Get Started?</h2>
                 <button
-                    onClick={openModal}
-                    className="bg-gunmetal hover:bg-gunmetal/90 text-antiwhite font-semibold py-3 px-6 rounded shadow-lg transition"
+                    onClick={handleClick}
+                    className="contact-button"
                 >
                     Contact Us
                 </button>
             </div>
         </section>
-
     );
-};
-
-export default Contact;
+}

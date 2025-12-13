@@ -1,6 +1,8 @@
 //app/sections/Services.tsx
 
 import { Monitor, ShoppingCart, Cpu, Zap, Shield, TrendingUp } from 'lucide-react';
+import "../styles/Services.css"
+
 
 const services = [
   {
