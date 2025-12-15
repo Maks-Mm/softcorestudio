@@ -1,4 +1,3 @@
-// app/sections/Contact.tsx
 "use client";
 
 import { useState } from 'react';
@@ -95,44 +94,81 @@ export default function Contact({ openModal }: ContactProps) {
                 backgroundImage: "linear-gradient(rgba(217,4,41,0.85), rgba(217,4,41,0.85)), url('https://images.unsplash.com/photo-1487537708572-3c850b5e856e?dpr=1&auto=compress&format&fit=crop&w=1199&h=798&q=80&cs=tinysrgb&crop=&bg=')"
             }}
         >
+            {/* Dark overlay for better contrast */}
+            <div className="contact-overlay"></div>
+            
             <div className="contact-container">
                 <div className="contact-content-wrapper">
+                    {/* Floating decorative elements */}
                     <div className="floating-elements">
-                        <div className="floating-element"></div>
-                        <div className="floating-element"></div>
-                        <div className="floating-element"></div>
+                        <div className="floating-element floating-element-1"></div>
+                        <div className="floating-element floating-element-2"></div>
+                        <div className="floating-element floating-element-3"></div>
                     </div>
                     
-                    <div className="badge">
-                        <div className="pulse-dot"></div>
-                        <span>Get Started</span>
+                    {/* Header section */}
+                    <div className="contact-header">
+                        <div className="contact-badge">
+                            <div className="badge-pulse"></div>
+                            <span className="badge-text">Let's Connect</span>
+                        </div>
+                        
+                        <h2 className="contact-title">
+                            Ready to Bring Your Vision to Life?
+                            <span className="title-highlight"></span>
+                        </h2>
+                        
+                        <p className="contact-subtitle">
+                            Join hundreds of satisfied clients who transformed their ideas into 
+                            exceptional digital experiences with our expert team.
+                        </p>
                     </div>
                     
-                    <h2 className="contact-title">
-                        Ready to Transform Your Vision?
-                        <div className="title-highlight"></div>
-                    </h2>
-                    
-                    <p className="contact-subtitle">
-                        Let's discuss your next project. We are here to help you achieve your goals with precision and creativity.
-                    </p>
-                    
-                    {renderButton()}
-                    
-                    <div className="additional-info">
-                        <div className="info-item">
-                            <div className="info-icon">✓</div>
-                            <div className="info-text">Free Consultation</div>
+                    {/* CTA Section */}
+                    <div className="contact-cta">
+                        {renderButton()}
+                        
+                        <div className="cta-assurance">
+                            <svg className="assurance-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                                <path d="M20 6L9 17l-5-5"/>
+                            </svg>
+                            <span>Free consultation • No commitment • 24-hour response</span>
                         </div>
-                        <div className="info-divider"></div>
-                        <div className="info-item">
-                            <div className="info-icon">🎯</div>
-                            <div className="info-text">Custom Solutions</div>
+                    </div>
+                    
+                    {/* Features Grid */}
+                    <div className="contact-features">
+                        <div className="feature-card">
+                            <div className="feature-icon-wrapper">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                                    <path d="M22 4L12 14.01l-3-3"/>
+                                </svg>
+                            </div>
+                            <h4 className="feature-title">Expert Strategy</h4>
+                            <p className="feature-description">Customized solutions for your goals</p>
                         </div>
-                        <div className="info-divider"></div>
-                        <div className="info-item">
-                            <div className="info-icon">⚡</div>
-                            <div className="info-text">Fast Response</div>
+                        
+                        <div className="feature-card">
+                            <div className="feature-icon-wrapper">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                                </svg>
+                            </div>
+                            <h4 className="feature-title">Secure & Reliable</h4>
+                            <p className="feature-description">Enterprise-grade security</p>
+                        </div>
+                        
+                        <div className="feature-card">
+                            <div className="feature-icon-wrapper">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                                    <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+                                    <path d="M2 17l10 5 10-5"/>
+                                    <path d="M2 12l10 5 10-5"/>
+                                </svg>
+                            </div>
+                            <h4 className="feature-title">End-to-End Support</h4>
+                            <p className="feature-description">Full project lifecycle support</p>
                         </div>
                     </div>
                 </div>
