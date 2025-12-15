@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from 'react';
+import "../styles/Contact.css";
 
 interface ContactProps {
     openModal?: () => void;
@@ -113,7 +114,7 @@ export default function Contact({ openModal }: ContactProps) {
                             <span className="badge-text">Let's Connect</span>
                         </div>
                         
-                        <h2 className="contact-title">
+                        <h2 className="contact-title" style={{ color: "white" }}>
                             Ready to Bring Your Vision to Life?
                             <span className="title-highlight"></span>
                         </h2>
