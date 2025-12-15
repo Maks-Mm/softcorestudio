@@ -28,30 +28,35 @@
     z-index: 1;
 }
 
-/* Container */
 .contact-container {
     max-width: 1200px;
     width: 100%;
     position: relative;
     z-index: 2;
+
+    /* NEW – reduce visual pressure */
+    padding: 0 1rem;
+    background: transparent;
 }
 
-/* ================= GLASS WRAPPER ================= */
+
 .contact-content-wrapper {
     position: relative;
     padding: 5rem 4rem;
-    border-radius: 32px;
+    border-radius: 28px;
+
     background: linear-gradient(
         145deg,
-        rgba(0, 0, 0, 0.55),
-        rgba(0, 0, 0, 0.35)
+        rgba(255, 255, 255, 0.06),
+        rgba(255, 255, 255, 0.02)
     );
-    backdrop-filter: blur(22px);
-    border: 1px solid rgba(255, 255, 255, 0.12);
+
+    backdrop-filter: blur(14px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+
     box-shadow:
-        0 30px 60px rgba(0, 0, 0, 0.45),
-        inset 0 1px 0 rgba(255, 255, 255, 0.08);
-    overflow: hidden;
+        0 20px 40px rgba(0, 0, 0, 0.25),
+        inset 0 1px 0 rgba(255, 255, 255, 0.05);
 }
 
 /* ================= FLOATING DECOR ================= */
