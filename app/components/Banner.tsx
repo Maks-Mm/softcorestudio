@@ -19,36 +19,37 @@ export default function Banner({ onOpen }: BannerProps) {
   return (
     <div className="banner-container">
       {/* HERO SECTION */}
+
+      {/*the content is repiding like at Hero  */}
       <header
         id="home"
         className="banner-hero"
         style={{
           backgroundImage:
-            "linear-gradient(rgba(43,45,66,0.75), rgba(43,45,66,0.75)), url('https://images.unsplash.com/photo-1616469832301-ffaeadc68cf3?q=80&w=1170&auto=format&fit=crop')",
+            "linear-gradient(rgba(43,45,66,0.75), rgba(43,45,66,0.75)), url('https://plus.unsplash.com/premium_photo-1661313803087-c32d32a65019?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1pbi1zYW1lLXNlcmllc3wzfHx8ZW58MHx8fHx8')",
         }}
       >
         <div className="container banner-content animate-fadeInUp">
-          <h1 className="banner-title">
-            Soft Core Studio
-          </h1>
-
-          <p className="banner-subtitle">
-            From Concept to Global Deployment.
-          </p>
-          <p className="banner-description">
-            We build scalable platforms and services for private or global clients.
-          </p>
+         <h1 className="banner-title">
+  Build. Scale. Conquer.
+</h1>
+<p className="banner-subtitle">
+  Soft Core Studio empowers businesses to scale globally.
+</p>
+<p className="banner-description">
+  From cutting-edge web apps to full digital ecosystems, we turn your vision into reality.
+</p>
 
           <div className="banner-buttons">
             <button onClick={onOpen} className="btn btn-primary">
-              Get a Quote Now
+              button 1
             </button>
 
             <button
               onClick={() => scrollTo("services")}
               className="btn btn-secondary"
             >
-              See Our Services
+              button 2 
             </button>
           </div>
         </div>
