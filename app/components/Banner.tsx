@@ -103,7 +103,6 @@ export default function Banner({ onOpen }: BannerProps) {
 
       {/* FOOTER */}
       <footer className="footer">
-        <p className="footer-text">© 2025 Soft Core Studio — All Rights Reserved</p>
         <Footer />
       </footer>
     </div>

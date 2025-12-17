@@ -1,3 +1,5 @@
+/*
+
 // src/components/ServicesSection.tsx
 import React from "react";
 
@@ -34,3 +36,5 @@ const ServicesSection: React.FC<ServicesSectionProps> = ({ onOpenModal }) => {
 };
 
 export default ServicesSection;
+
+*/
