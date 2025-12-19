@@ -7,6 +7,7 @@ import "../styles/Services.css";
 import { FaReact, FaWordpress, FaDev } from "react-icons/fa";
 import { SiWoocommerce } from "react-icons/si";
 import { TbSeo } from "react-icons/tb";
+import { Button } from "../components/Button";
 
 type Service = {
   id: number;
@@ -136,14 +137,10 @@ export default function Services() {
                 ))}
               </div>
 
+
               <div className="service-footer">
                 <span className="service-price">{service.price}</span>
-                <button
-                  className="service-cta"
-                  onClick={() => handleClick(service.id)}
-                >
-                  {service.cta}
-                </button>
+                <Button text={service.cta} onClick={() => handleClick(service.id)} />
               </div>
 
               {messages[service.id] && (
