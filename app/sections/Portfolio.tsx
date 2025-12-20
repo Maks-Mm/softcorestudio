@@ -38,7 +38,7 @@ const Portfolio: React.FC<PortfolioProps> = ({ onOpen }) => {
   };
 
   return (
-    <div className="portfolio-wrapper">
+    <div className="portfolio-wrapper"  id="portfolio">
       <h2 className="portfolio-title">Our Successful Projects</h2>
       <p className="portfolio-subtitle">Live production platforms we built:</p>
 
