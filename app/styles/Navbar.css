@@ -34,10 +34,11 @@
 /* nav list - MOVED LEFT */
 .list-inline {
   display: flex;
-  gap: 2rem; /* Increased gap for better spacing */
-  justify-content: flex-end ; /* Changed from flex-end */
+  gap: 2rem;
+  justify-content: flex-end;
   align-items: center;
-  padding-left: 1rem; /* Optional: extra left spacing */
+  padding-left: 1rem;
+  flex-wrap: wrap; /* allow wrapping for small screens */
 }
 
 .list-inline-item {
@@ -62,10 +63,45 @@
 
 /* SIGNUP BUTTON */
 .signup-btn {
-  padding: .5em 1em; /* Slightly larger for better appearance */
+  padding: .5em 1em;
   border-radius: 2px;
   color: #EDF2F4 !important;
   border-bottom: 1px solid #D90429 !important;
   border-color: #D90429 !important;
-  margin-left: 1rem; /* Space from other items */
+  margin-left: 1rem;
+}
+
+/* ========================= */
+/* RESPONSIVE FOR SMALL SCREENS */
+/* ========================= */
+@media (max-width: 768px) {
+  .container {
+    padding: 0 1rem; /* smaller padding on mobile */
+  }
+
+  .list-inline {
+    flex-direction: column; /* stack items vertically */
+    align-items: flex-start;
+    gap: 1rem; /* smaller gap between items */
+  }
+
+  .top-nav a {
+    font-size: 1rem; /* slightly smaller text */
+  }
+
+  .signup-btn {
+    width: 100%; /* full-width button on small screens */
+    text-align: center;
+    margin-left: 0; /* remove left margin */
+  }
+}
+
+@media (max-width: 480px) {
+  .top-nav a {
+    font-size: 0.95rem; /* very small screens */
+  }
+
+  .list-inline {
+    gap: 0.5rem; /* tighter spacing */
+  }
 }
