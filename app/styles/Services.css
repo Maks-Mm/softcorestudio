@@ -101,13 +101,13 @@
   font-size: 0.85rem;
 }
 
-/* Footer */
 .service-footer {
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  margin-top: 1.5rem;
+  align-items: flex-start;
 }
+
+
 
 .service-price {
   font-size: 1.7rem;
@@ -140,4 +140,52 @@
   border-radius: 10px;
   color: #22c55e;
   text-align: center;
+}
+/* Update the service-footer styling */
+.service-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  gap: 1rem;
+}
+
+/* Make the price align properly */
+.service-price {
+  font-size: 1.7rem;
+  font-weight: 700;
+  background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  line-height: 1;
+}
+
+/* Update the button styling */
+.service-cta {
+  padding: 12px 22px;
+  border: none;
+  border-radius: 12px;
+  background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  min-width: 140px;
+}
+
+.service-cta:hover {
+  transform: scale(1.05);
+}
+
+.service-button {
+  padding: 10px 20px !important;
+  min-width: 140px !important;
+  white-space: nowrap !important;
+}
+
+/* If you want to ensure the button doesn't stretch */
+.btn-white {
+  flex-shrink: 0;
 }

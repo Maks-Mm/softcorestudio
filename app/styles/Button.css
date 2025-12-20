@@ -1,0 +1,31 @@
+.btn-white {
+  background: #fff;
+  color: #000;
+  border-radius: 6px;
+  overflow: hidden;
+  position: relative;
+  z-index: 0;
+}
+
+
+.btn-white::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  width: 0;
+  transition: all 0.3s ease;
+  box-shadow:
+    -7px -7px 20px rgba(255, 255, 255, 0.7),
+    -4px -4px 5px rgba(255, 255, 255, 0.7),
+     7px  7px 20px rgba(0, 0, 0, 0.12),
+     4px  4px 5px rgba(0, 0, 0, 0.08);
+}
+
+.btn-white:hover::after {
+  width: 100%;
+}
+
+.btn-white:hover {
+  color: #000;
+}

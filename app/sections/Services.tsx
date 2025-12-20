@@ -140,7 +140,12 @@ export default function Services() {
 
               <div className="service-footer">
                 <span className="service-price">{service.price}</span>
-                <Button text={service.cta} onClick={() => handleClick(service.id)} />
+                <Button
+                  text={service.cta}
+                  variant="white"
+                  onClick={() => handleClick(service.id)}
+                  className="service-button"
+                />
               </div>
 
               {messages[service.id] && (
