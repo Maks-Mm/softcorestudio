@@ -1,12 +1,10 @@
-
-//then this must be a component no button but a styled portfolio block to render from Banner 
-//the Hero component is false for Portfolio - rendering (it takes just mount of page no body like Banner)
-//app/sections/portfolio.tsx
-
+// app/sections/Portfolio.tsx
+// app/sections/portfolio.tsx
 "use client";
 
 import React from "react";
 import "../styles/Portfolio.css";
+import { Button } from "../components/Button"; // import the button
 
 interface PortfolioProps {
   onOpen?: () => void;
@@ -46,17 +44,21 @@ const Portfolio: React.FC<PortfolioProps> = ({ onOpen }) => {
 
       <div className="portfolio-grid">
         {projects.map((p, i) => (
-          <div
-            key={i}
-            className="portfolio-card"
-            onClick={() => openProject(p.link)}
-          >
-            <div className="portfolio-image" style={{ backgroundImage: `url(${p.img})` }} />
+          <div key={i} className="portfolio-card">
+            <div
+              className="portfolio-image"
+              style={{ backgroundImage: `url(${p.img})` }}
+            />
 
             <div className="portfolio-content">
               <h3>{p.title}</h3>
               <p>{p.desc}</p>
-              <span className="portfolio-link">Open Project →</span>
+              {/* Use the Button component instead of span */}
+              <Button
+                text="Open Project →"
+                variant="white"
+                onClick={() => openProject(p.link)}
+              />
             </div>
           </div>
         ))}
