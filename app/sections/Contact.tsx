@@ -19,23 +19,8 @@ export default function Contact({ openModal }: ContactProps) {
         switch (buttonVariant) {
             case 'glow':
                 return (
-                    <button
-                        onClick={handleClick}
-                        className="contact-cta-button glow-button"
-                        aria-label="Contact Us to start your project"
-                        onMouseEnter={() => setIsHovered(true)}
-                        onMouseLeave={() => setIsHovered(false)}
-                    >
-                        <span className="button-content">
-                            <svg className="button-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
-                            </svg>
-                            Start Your Project Now
-                            <svg className="button-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                                <path d="M5 12h14M12 5l7 7-7 7" />
-                            </svg>
-                        </span>
-                        <span className="glow-effect"></span>
+                    <button onClick={handleClick} className="btn btn-primary">
+                        Start Your Project Now
                     </button>
                 );
 

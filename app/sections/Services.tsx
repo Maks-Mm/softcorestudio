@@ -77,7 +77,7 @@ const services: Service[] = [
     cta: "Start Project",
     icon: <TbSeo />,
     image:
-      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600",
+      "https://media.istockphoto.com/id/2226083558/de/foto/menschliche-interaktion-mit-ki-technologie-%C3%BCber-mobilger%C3%A4te.webp?s=2048x2048&w=is&k=20&c=ePmz1RPe9nUWRebT-QP0ex2e_-M5PjceFzbJZYvyfmM=",
     colorClass: "seo",
   },
   {

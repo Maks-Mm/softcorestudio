@@ -19,12 +19,10 @@
 .contact-overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(
-        135deg,
-        rgba(0, 0, 0, 0.55) 0%,
-        rgba(0, 0, 0, 0.65) 50%,
-        rgba(0, 0, 0, 0.75) 100%
-    );
+    background: linear-gradient(135deg,
+            rgba(0, 0, 0, 0.55) 0%,
+            rgba(0, 0, 0, 0.65) 50%,
+            rgba(0, 0, 0, 0.75) 100%);
     z-index: 1;
 }
 
@@ -45,11 +43,9 @@
     padding: 5rem 4rem;
     border-radius: 28px;
 
-    background: linear-gradient(
-        145deg,
-        rgba(255, 255, 255, 0.06),
-        rgba(255, 255, 255, 0.02)
-    );
+    background: linear-gradient(145deg,
+            rgba(255, 255, 255, 0.06),
+            rgba(255, 255, 255, 0.02));
 
     backdrop-filter: blur(14px);
     border: 1px solid rgba(255, 255, 255, 0.08);
@@ -70,33 +66,33 @@
 .floating-element {
     position: absolute;
     border-radius: 50%;
-    background: radial-gradient(
-        circle,
-        rgba(255, 255, 255, 0.12),
-        transparent 70%
-    );
+    background: radial-gradient(circle,
+            rgba(255, 255, 255, 0.12),
+            transparent 70%);
     animation: float 20s infinite ease-in-out;
 }
 
-.floating-element-1 { 
-    width: 200px; 
-    height: 200px; 
-    top: -60px; 
-    left: -60px; 
+.floating-element-1 {
+    width: 200px;
+    height: 200px;
+    top: -60px;
+    left: -60px;
 }
-.floating-element-2 { 
-    width: 150px; 
-    height: 150px; 
-    bottom: -40px; 
-    right: -40px; 
-    animation-delay: -7s; 
+
+.floating-element-2 {
+    width: 150px;
+    height: 150px;
+    bottom: -40px;
+    right: -40px;
+    animation-delay: -7s;
 }
-.floating-element-3 { 
-    width: 120px; 
-    height: 120px; 
-    top: 50%; 
-    right: 15%; 
-    animation-delay: -14s; 
+
+.floating-element-3 {
+    width: 120px;
+    height: 120px;
+    top: 50%;
+    right: 15%;
+    animation-delay: -14s;
 }
 
 /* ================= HEADER ================= */
@@ -122,11 +118,14 @@
     color: #ffffff;
     margin-bottom: 2.5rem;
 }
+.btn.btn-primary {
+    background-color: red;
+}
 
 .badge-pulse {
     width: 10px;
     height: 10px;
-    background: #FFC300;
+    background: red;
     border-radius: 50%;
     animation: pulse 2s infinite;
 }
@@ -160,7 +159,10 @@
     width: 120px;
     height: 4px;
     margin: 0.75rem auto 0;
-    background: linear-gradient(90deg, transparent, #FFC300, transparent);
+    background: linear-gradient(90deg,
+            transparent,
+            var(--color-primary),
+            transparent);
     border-radius: 2px;
     display: block;
 }
@@ -222,7 +224,7 @@
     transform: translateY(-10px);
     background: rgba(0, 0, 0, 0.45);
     border-color: rgba(255, 255, 255, 0.2);
-    box-shadow: 
+    box-shadow:
         0 25px 45px rgba(0, 0, 0, 0.5),
         0 0 30px rgba(217, 4, 41, 0.1);
 }
@@ -235,9 +237,9 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background: rgba(255, 195, 0, 0.12);
-    border: 1px solid rgba(255, 195, 0, 0.3);
-    color: #FFC300;
+     background: rgba(217, 4, 41, 0.12);
+  border: 1px solid rgba(217, 4, 41, 0.3);
+    color: var(--color-primary);
 }
 
 .feature-title {
@@ -256,25 +258,21 @@
 
 /* ================= BUTTON VARIANTS ================= */
 
-/* Glow Button (Default) */
 .glow-button {
-    position: relative;
-    background: linear-gradient(135deg, #FFC300, #ffda6a);
-    color: #1a1a1a !important;
-    font-weight: 700;
-    font-size: 1.1rem;
-    padding: 1.25rem 3.5rem;
-    border-radius: 50px;
-    border: none;
-    cursor: pointer;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    transition: all 0.3s ease-in-out;
-    box-shadow: 0 12px 45px rgba(255, 195, 0, 0.45);
-    transform: scale(1);
-    overflow: hidden;
-    min-width: 320px;
+  background: var(--color-primary);
+  color: white !important;
+  font-weight: 700;
+  font-size: 1.05rem;
+  padding: 1.25rem 3.5rem;
+  border-radius: 6px; /* same as Banner */
+  border: none;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  transition: all 0.3s ease;
+  box-shadow: 0 12px 30px rgba(217, 4, 41, 0.35);
 }
+
 
 .glow-button .button-content {
     display: flex;
@@ -294,8 +292,17 @@
     transform: translateX(4px);
 }
 
+
 .glow-button:hover .button-icon {
     transform: scale(1.1);
+}
+.glow-effect {
+  background: linear-gradient(
+    45deg,
+    transparent,
+    rgba(255, 255, 255, 0.25),
+    transparent
+  );
 }
 
 .glow-button .glow-effect {
@@ -304,10 +311,10 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background: linear-gradient(45deg, 
-        transparent 20%, 
-        rgba(255, 255, 255, 0.3) 50%, 
-        transparent 80%);
+    background: linear-gradient(45deg,
+            transparent 20%,
+            rgba(255, 255, 255, 0.3) 50%,
+            transparent 80%);
     opacity: 0;
     transition: opacity 0.3s ease;
     animation: shimmer 2s infinite;
@@ -319,7 +326,7 @@
 
 .glow-button:hover {
     background: linear-gradient(135deg, #ffda6a, #FFC300);
-    box-shadow: 
+    box-shadow:
         0 20px 60px rgba(255, 195, 0, 0.6),
         0 0 30px rgba(255, 195, 0, 0.3);
     transform: translateY(-5px) scale(1.02);
@@ -469,23 +476,30 @@
 
 /* ================= ANIMATIONS ================= */
 @keyframes float {
-    0%, 100% { 
-        transform: translate(0, 0) scale(1); 
+
+    0%,
+    100% {
+        transform: translate(0, 0) scale(1);
     }
-    33% { 
-        transform: translate(30px, -30px) scale(1.1); 
+
+    33% {
+        transform: translate(30px, -30px) scale(1.1);
     }
-    66% { 
-        transform: translate(-20px, 20px) scale(0.9); 
+
+    66% {
+        transform: translate(-20px, 20px) scale(0.9);
     }
 }
 
 @keyframes pulse {
-    0%, 100% { 
+
+    0%,
+    100% {
         opacity: 1;
         transform: scale(1);
     }
-    50% { 
+
+    50% {
         opacity: 0.7;
         transform: scale(1.1);
     }
@@ -497,6 +511,7 @@
         height: 10px;
         opacity: 0.3;
     }
+
     100% {
         width: 30px;
         height: 30px;
@@ -508,30 +523,36 @@
     0% {
         transform: translateX(-100%) rotate(45deg);
     }
+
     100% {
         transform: translateX(100%) rotate(45deg);
     }
 }
 
 @keyframes gradientShift {
-    0%, 100% { 
-        background-position: 0% 50%; 
+
+    0%,
+    100% {
+        background-position: 0% 50%;
     }
-    50% { 
-        background-position: 100% 50%; 
+
+    50% {
+        background-position: 100% 50%;
     }
 }
 
 /* ================= RESPONSIVE ================= */
 @media (max-width: 1024px) {
-    .contact-title { 
-        font-size: 3rem; 
+    .contact-title {
+        font-size: 3rem;
     }
-    .contact-features { 
-        grid-template-columns: repeat(2, 1fr); 
+
+    .contact-features {
+        grid-template-columns: repeat(2, 1fr);
     }
-    .contact-content-wrapper { 
-        padding: 4rem 3rem; 
+
+    .contact-content-wrapper {
+        padding: 4rem 3rem;
     }
 }
 
@@ -540,31 +561,31 @@
         min-height: 80vh;
         padding: 4rem 1rem;
     }
-    
-    .contact-content-wrapper { 
-        padding: 3rem 2rem; 
+
+    .contact-content-wrapper {
+        padding: 3rem 2rem;
         border-radius: 24px;
     }
-    
-    .contact-title { 
-        font-size: 2.5rem; 
+
+    .contact-title {
+        font-size: 2.5rem;
     }
-    
-    .contact-subtitle { 
-        font-size: 1.1rem; 
+
+    .contact-subtitle {
+        font-size: 1.1rem;
     }
-    
-    .contact-features { 
-        grid-template-columns: 1fr; 
+
+    .contact-features {
+        grid-template-columns: 1fr;
         gap: 1.5rem;
         margin-top: 3rem;
         padding-top: 3rem;
     }
-    
+
     .feature-card {
         padding: 1.5rem;
     }
-    
+
     .glow-button,
     .gradient-button,
     .neon-button,
@@ -576,36 +597,36 @@
 }
 
 @media (max-width: 480px) {
-    .contact-title { 
-        font-size: 2rem; 
+    .contact-title {
+        font-size: 2rem;
     }
-    
-    .contact-subtitle { 
-        font-size: 1rem; 
+
+    .contact-subtitle {
+        font-size: 1rem;
     }
-    
-    .contact-content-wrapper { 
-        padding: 2.5rem 1.5rem; 
+
+    .contact-content-wrapper {
+        padding: 2.5rem 1.5rem;
     }
-    
+
     .contact-badge {
         font-size: 0.8rem;
         padding: 8px 16px;
     }
-    
+
     .feature-icon-wrapper {
         width: 50px;
         height: 50px;
     }
-    
+
     .feature-title {
         font-size: 1.1rem;
     }
-    
+
     .feature-description {
         font-size: 0.9rem;
     }
-    
+
     .glow-button,
     .gradient-button,
     .neon-button,

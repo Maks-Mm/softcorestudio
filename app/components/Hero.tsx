@@ -1,7 +1,6 @@
 import React from "react";
 import "../styles/Hero.css";
 
-//import Portfolio from "../sections/Portfolio";
 
 interface HeroProps {
   onOpen?: () => void;
@@ -19,9 +18,7 @@ const Hero: React.FC<HeroProps> = ({ onOpen }) => {
           We build scalable platforms and services for private or global clients.
         </p>
 
-        {/* <Portfolio
-          onOpen={() => console.log("Viewing portfolio...")}
-        /> */}
+       
 
         <div className="hero-buttons">
           <button
