@@ -30,15 +30,15 @@ export default function Banner({ onOpen }: BannerProps) {
         }}
       >
         <div className="container banner-content animate-fadeInUp">
-         <h1 className="banner-title">
-  Build. Scale. Conquer.
-</h1>
-<p className="banner-subtitle">
-  Soft Core Studio empowers businesses to scale globally.
-</p>
-<p className="banner-description">
-  From cutting-edge web apps to full digital ecosystems, we turn your vision into reality.
-</p>
+          <h1 className="banner-title">
+            Build. Scale. Conquer.
+          </h1>
+          <p className="banner-subtitle">
+            Soft Core Studio empowers businesses to scale globally.
+          </p>
+          <p className="banner-description">
+            From cutting-edge web apps to full digital ecosystems, we turn your vision into reality.
+          </p>
 
           <div className="banner-buttons">
             <button onClick={onOpen} className="btn btn-primary">
@@ -49,7 +49,7 @@ export default function Banner({ onOpen }: BannerProps) {
               onClick={() => scrollTo("services")}
               className="btn btn-secondary"
             >
-              button 2 
+              button 2
             </button>
           </div>
         </div>

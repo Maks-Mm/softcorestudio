@@ -8,6 +8,8 @@ import { FaReact, FaWordpress, FaDev } from "react-icons/fa";
 import { SiWoocommerce } from "react-icons/si";
 import { TbSeo } from "react-icons/tb";
 import { Button } from "../components/Button";
+import { CiServer } from "react-icons/ci";
+
 
 type Service = {
   id: number;
@@ -62,7 +64,7 @@ const services: Service[] = [
     cta: "Start Project",
     icon: <SiWoocommerce />,
     image:
-      "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=600",
+      "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8c29sdXRpb25zfGVufDB8fDB8fHww",
     colorClass: "shop",
   },
   {
@@ -89,9 +91,29 @@ const services: Service[] = [
     cta: "Subscribe Now",
     icon: <FaDev />,
     image:
-      "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=600",
+      "https://media.istockphoto.com/id/1352203098/photo/devops-software-development-and-it-operations-engineer-working-in-agile-methodology.webp?a=1&b=1&s=612x612&w=0&k=20&c=jP0fXJ1bS29ztm0HKdTg7Tom7fKIt8lCmvxGtx-zf3I=",
     colorClass: "dev",
   },
+  {
+    id: 6,
+    title: "API & Backend Development",
+    description:
+      "Robust backend systems with secure APIs, databases, and scalable server architecture.",
+    price: "€700+",
+    tech: ["Node.js", "Express", "MongoDB", "PostgreSQL"],
+    features: [
+      "REST & GraphQL APIs",
+      "Authentication & Authorization",
+      "Database Design",
+      "Scalable Architecture",
+    ],
+    cta: "Start Project",
+    icon: <CiServer />,
+    image:
+      "https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=600",
+    colorClass: "backend",
+  }
+
 ];
 
 export default function Services() {
