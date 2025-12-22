@@ -1,4 +1,5 @@
 "use client";
+
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useStickyNav } from "../hooks/useStickyNav";
@@ -6,6 +7,7 @@ import { useSmoothScroll } from "../hooks/useSmoothScroll";
 import "../styles/Navbar.css";
 
 export default function Navbar() {
+
   const isSticky = useStickyNav("home");
   const scrollTo = useSmoothScroll();
   const router = useRouter();
@@ -19,7 +21,7 @@ export default function Navbar() {
     }
   }, [redirectToPortfolio, router]);
 
-  const handleNavClick = (targetId : any) => {
+  const handleNavClick = (targetId: any) => {
     if (targetId === "portfolio" && window.location.pathname !== "/") {
       setRedirectToPortfolio(true);
     } else {
@@ -61,19 +63,25 @@ export default function Navbar() {
                 Portfolio
               </a>
             </li>
-            <li className="list-inline-item m-r-0">
-              <a
-                className="btn signup-btn btn-danger btn-sm"
-                data-toggle="modal"
-                data-target="#signup_form_modal"
+            <div className="nav-buttons">
+              <button
+                className="btn signup-btn"
+                onClick={() => alert("Sign Up clicked")}
               >
-                Start a Project
-              </a>
-            </li>
+                Sign Up
+              </button>
+              <button
+                className="btn signin-btn"
+                onClick={() => alert("Sign In clicked")}
+              >
+                Sign In
+              </button>
+            </div>
+
           </ul>
         </div>
       </nav>
-      
+
       {/* Mobile menu overlay */}
       <div className={`menu-overlay ${isMenuOpen ? 'active' : ''}`} onClick={() => setIsMenuOpen(false)}></div>
     </>
