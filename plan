@@ -1,0 +1,85 @@
+Got it! Here’s a **structured roadmap / plan for your next job day**, focusing on integrating **API auth to Navbar buttons** and **Dashboard access** without diving into code.
+
+---
+
+## **📅 Next Job Day Plan: API Auth Integration**
+
+### **Goal**
+
+* Integrate Firebase/Google authentication for **Sign In / Sign Up buttons** in Navbar.
+* Enable **Dashboard access** only for authenticated users.
+* Prepare a scalable structure for future authentication features.
+
+---
+
+### **1️⃣ Morning: Preparation & Setup (1.5–2h)**
+
+1. Review current Navbar structure and buttons.
+2. Check existing Firebase project configuration:
+
+   * Firebase console: Auth enabled (Google, Email/Password).
+   * Google Cloud Console: OAuth credentials set.
+3. Prepare environment variables for Firebase (API keys, project ID).
+4. Plan authentication flow:
+
+   * Unauthenticated → Sign In / Sign Up
+   * Authenticated → Dashboard / Logout
+
+---
+
+### **2️⃣ Late Morning: Firebase Integration Planning (1–1.5h)**
+
+1. Decide on a **single source of truth** for user auth state.
+2. Map out **hooks or context** for managing auth state in Navbar and other components.
+3. Plan **conditional rendering** in Navbar for:
+
+   * Logged-out state → Sign In / Sign Up
+   * Logged-in state → Dashboard / Logout
+
+---
+
+### **3️⃣ Early Afternoon: Auth Actions & Button Integration (1–1.5h)**
+
+1. Define the actions for authentication:
+
+   * Sign In (Google / Email)
+   * Sign Up (Google / Email)
+   * Logout
+2. Connect these actions to Navbar buttons.
+3. Test each action in isolation to confirm it works with Firebase.
+
+---
+
+### **4️⃣ Mid Afternoon: Dashboard Access Control (1–1.5h)**
+
+1. Define rules for accessing the Dashboard:
+
+   * Only authenticated users can enter.
+   * Unauthenticated users redirected to login or home page.
+2. Plan how to pass the auth state to the Dashboard component.
+3. Map out **future scalability** for roles or permissions.
+
+---
+
+### **5️⃣ Late Afternoon: Testing & QA (1–2h)**
+
+1. Test all Navbar buttons for logged-in and logged-out scenarios.
+2. Test Dashboard access protection.
+3. Validate auth state persists on page refresh.
+4. Make notes for next improvements:
+
+   * Multi-provider auth (Facebook, GitHub, etc.)
+   * Token management for API calls
+   * Error handling and notifications
+
+---
+
+### **6️⃣ Wrap-Up**
+
+1. Document workflow and any edge cases discovered.
+2. Commit changes and prepare a short summary for the team or mentor.
+3. Set next-day goals: add additional providers, implement server-side auth, or role-based access.
+
+---
+
+If you want, I can also make a **visual timeline chart for the day**, so you can follow it hour by hour like a proper roadmap. It makes it much easier to stay on track. Do you want me to do that?
