@@ -1,4 +1,4 @@
-// app/pages/signin.tsx
+// app/signin/page.tsx
 "use client";
 
 import React, { useState } from "react";
@@ -24,7 +24,7 @@ export default function SignInPage() {
       setError(error.message);
       setLoading(false);
     } else if (user) {
-      router.push("/");
+      router.push("/dashboard");
     }
   };
 
