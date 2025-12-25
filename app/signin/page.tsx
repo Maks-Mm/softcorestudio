@@ -1,52 +1,66 @@
-// app/signin/page.tsx
+//app/signin/page.tsx
+
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { 
-  signInWithEmail, 
-  signInWithGoogle, 
+import {
+  signInWithEmail,
+  signInWithGoogle,
   signInWithGitHub,
-  initiatePhoneAuth 
 } from "@/app/lib/auth";
-import { 
-  FcGoogle,
-  FcPhone,
-  FcPhoneAndroid,
-  FcLock,
-  FcKey,
-  FcBusinessman,
-  FcGraduationCap 
-} from "react-icons/fc";
+
+import { FcGoogle, FcPhone, FcPhoneAndroid, FcLock } from "react-icons/fc";
 import { AiOutlineMail, AiOutlineGithub } from "react-icons/ai";
-import { BsShieldLock } from "react-icons/bs";
+import AOS from "aos";
+import "aos/dist/aos.css";
 import "../styles/AuthForm.css";
+
+type AuthError = {
+  message: string;
+} | null;
 
 export default function SignInPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [phone, setPhone] = useState("");
   const [showPhoneInput, setShowPhoneInput] = useState(false);
-  const [error, setError] = useState("");
-  const [success, setSuccess] = useState("");
+  const [error, setError] = useState<string>("");
+  const [success, setSuccess] = useState<string>("");
   const [loading, setLoading] = useState(false);
-  const [authMethod, setAuthMethod] = useState<"email" | "phone" | "">("");
+  const [isTransitioning, setIsTransitioning] = useState(false);
   const router = useRouter();
+
+  // Initialize AOS
+  useEffect(() => {
+    AOS.init({
+      duration: 1000,
+      once: true,
+      offset: 100,
+    });
+    AOS.refresh();
+  }, [showPhoneInput]);
 
   const handleEmailSignIn = async (e: React.FormEvent) => {
     e.preventDefault();
     setError("");
     setSuccess("");
     setLoading(true);
-    
-    const { user, error } = await signInWithEmail(email, password);
-    
-    if (error) {
-      setError(error.message);
+
+    try {
+      const { user, error }: { user: any; error: AuthError } =
+        await signInWithEmail(email, password);
+
+      if (error) {
+        setError(error?.message || "Login failed");
+      } else if (user) {
+        setSuccess("Login successful! Redirecting...");
+        setTimeout(() => router.push("/dashboard"), 1500);
+      }
+    } catch (err: any) {
+      setError(err?.message || "Unexpected error");
+    } finally {
       setLoading(false);
-    } else if (user) {
-      setSuccess("Login successful! Redirecting...");
-      setTimeout(() => router.push("/dashboard"), 1500);
     }
   };
 
@@ -54,14 +68,21 @@ export default function SignInPage() {
     setError("");
     setSuccess("");
     setLoading(true);
-    const { user, error } = await signInWithGoogle();
-    
-    if (error) {
-      setError(error.message);
+
+    try {
+      const { user, error }: { user: any; error: AuthError } =
+        await signInWithGoogle();
+
+      if (error) {
+        setError(error?.message || "Google login failed");
+      } else if (user) {
+        setSuccess("Google login successful! Redirecting...");
+        setTimeout(() => router.push("/dashboard"), 1500);
+      }
+    } catch (err: any) {
+      setError(err?.message || "Unexpected error");
+    } finally {
       setLoading(false);
-    } else if (user) {
-      setSuccess("Google login successful! Redirecting...");
-      setTimeout(() => router.push("/dashboard"), 1500);
     }
   };
 
@@ -69,54 +90,65 @@ export default function SignInPage() {
     setError("");
     setSuccess("");
     setLoading(true);
-    const { user, error } = await signInWithGitHub();
-    
-    if (error) {
-      setError(error.message);
-      setLoading(false);
-    } else if (user) {
-      setSuccess("GitHub login successful! Redirecting...");
-      setTimeout(() => router.push("/dashboard"), 1500);
-    }
-  };
 
-  const handlePhoneAuth = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setError("");
-    setSuccess("");
-    setLoading(true);
-    
-    // Note: Phone auth requires additional setup (recaptcha, verification code)
-    const { confirmationResult, error } = await initiatePhoneAuth(phone);
-    
-    if (error) {
-      setError(error.message);
+    try {
+      const { user, error }: { user: any; error: AuthError } =
+        await signInWithGitHub();
+
+      if (error) {
+        setError(error?.message || "GitHub login failed");
+      } else if (user) {
+        setSuccess("GitHub login successful! Redirecting...");
+        setTimeout(() => router.push("/dashboard"), 1500);
+      }
+    } catch (err: any) {
+      setError(err?.message || "Unexpected error");
+    } finally {
       setLoading(false);
-    } else if (confirmationResult) {
-      setSuccess("Verification code sent to your phone!");
-      // You would need to add verification code input here
     }
   };
 
   const handleToggleToSignUp = () => {
-    router.push("/signup");
+    setIsTransitioning(true);
+    setTimeout(() => {
+      router.push("/signup");
+    }, 300);
+  };
+
+  const handleTogglePhoneInput = () => {
+    setIsTransitioning(true);
+    setTimeout(() => {
+      setShowPhoneInput(!showPhoneInput);
+      setIsTransitioning(false);
+      setTimeout(() => AOS.refresh(), 50);
+    }, 300);
   };
 
   return (
-    <div className="auth-container">
+    <div className="auth-container" data-aos="fade-up">
       <div className="auth-form-wrapper">
-        {/* Login Form */}
-        <div className="form-box login">
-          <form className="auth-form" onSubmit={authMethod === "phone" ? handlePhoneAuth : handleEmailSignIn}>
-            <h1>Login</h1>
-            
+        <div
+          className={`form-box login ${
+            isTransitioning ? "form-transition-out" : "form-transition-in"
+          }`}
+          data-aos="zoom-in"
+          data-aos-delay="200"
+        >
+          <form
+            className="auth-form"
+            onSubmit={showPhoneInput ? (e) => e.preventDefault() : handleEmailSignIn}
+          >
+            <h1 data-aos="fade-down" data-aos-delay="300">
+              Login
+            </h1>
+
             {!showPhoneInput ? (
-              <>
-                <div className="input-box">
+              <div data-aos="fade-up" data-aos-delay="400">
+                <div className="input-box" data-aos="fade-right" data-aos-delay="500">
                   <input
                     type="email"
                     placeholder="Email"
-                    required={authMethod === "email"}
+                    required={!showPhoneInput}
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                   />
@@ -124,11 +156,11 @@ export default function SignInPage() {
                     <AiOutlineMail />
                   </span>
                 </div>
-                <div className="input-box">
+                <div className="input-box" data-aos="fade-left" data-aos-delay="600">
                   <input
                     type="password"
                     placeholder="Password"
-                    required={authMethod === "email"}
+                    required={!showPhoneInput}
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                   />
@@ -136,13 +168,13 @@ export default function SignInPage() {
                     <FcLock />
                   </span>
                 </div>
-              </>
+              </div>
             ) : (
-              <div className="input-box">
+              <div className="input-box" data-aos="fade-up" data-aos-delay="400">
                 <input
                   type="tel"
-                  placeholder="Phone number (+1234567890)"
-                  required={authMethod === "phone"}
+                  placeholder="Phone number (Coming soon)"
+                  disabled
                   value={phone}
                   onChange={(e) => setPhone(e.target.value)}
                 />
@@ -151,68 +183,93 @@ export default function SignInPage() {
                 </span>
               </div>
             )}
-            
-            <div className="forgot-link">
-              <a href="#" onClick={() => setShowPhoneInput(!showPhoneInput)}>
+
+            <div className="forgot-link" data-aos="fade-up" data-aos-delay="700">
+              <a href="#" onClick={handleTogglePhoneInput}>
                 {showPhoneInput ? "Use Email Instead" : "Use Phone Instead"}
               </a>
             </div>
-            
-            {error && <div className="error-message">{error}</div>}
-            {success && <div className="success-message">{success}</div>}
-            
-            <button 
-              type="submit" 
+
+            {error && (
+              <div className="error-message" data-aos="fade-up">
+                {error}
+              </div>
+            )}
+            {success && (
+              <div className="success-message" data-aos="fade-up">
+                {success}
+              </div>
+            )}
+
+            <button
+              type="submit"
               className="auth-btn"
-              disabled={loading}
-              onClick={() => setAuthMethod(showPhoneInput ? "phone" : "email")}
+              disabled={loading || showPhoneInput}
+              data-aos="fade-up"
+              data-aos-delay="800"
             >
               {loading ? (
                 <>
                   <span className="loading-spinner"></span>
-                  Logging in...
+                  {showPhoneInput ? "Checking..." : "Logging in..."}
                 </>
+              ) : showPhoneInput ? (
+                "Coming Soon"
               ) : (
-                'Login'
+                "Login"
               )}
             </button>
-            
-            <div className="social-providers">
+
+            <div className="social-providers" data-aos="fade-up" data-aos-delay="900">
               <div className="providers-title">Login with</div>
               <div className="social-buttons">
-                <button 
-                  type="button" 
+                <button
+                  type="button"
                   className="social-btn google"
                   onClick={handleGoogleSignIn}
                   disabled={loading}
                   title="Google"
+                  data-aos="flip-left"
+                  data-aos-delay="1000"
                 >
                   <FcGoogle size={24} />
                 </button>
-                <button 
-                  type="button" 
+                <button
+                  type="button"
                   className="social-btn github"
                   onClick={handleGitHubSignIn}
                   disabled={loading}
                   title="GitHub"
+                  data-aos="flip-left"
+                  data-aos-delay="1100"
                 >
                   <AiOutlineGithub size={24} />
                 </button>
-                <button 
-                  type="button" 
+                <button
+                  type="button"
                   className="social-btn phone"
-                  onClick={() => setShowPhoneInput(true)}
+                  onClick={() => {
+                    setShowPhoneInput(true);
+                    AOS.refresh();
+                  }}
                   disabled={loading}
-                  title="Phone"
+                  title="Phone (Coming Soon)"
+                  data-aos="flip-left"
+                  data-aos-delay="1200"
                 >
                   <FcPhone size={24} />
                 </button>
-                <button 
-                  type="button" 
+                <button
+                  type="button"
                   className="social-btn email"
-                  onClick={() => setShowPhoneInput(false)}
+                  onClick={() => {
+                    setShowPhoneInput(false);
+                    AOS.refresh();
+                  }}
                   disabled={loading}
                   title="Email"
+                  data-aos="flip-left"
+                  data-aos-delay="1300"
                 >
                   <AiOutlineMail size={24} />
                 </button>
@@ -221,14 +278,21 @@ export default function SignInPage() {
           </form>
         </div>
 
-        {/* Toggle Panel */}
         <div className="toggle-box">
-          <div className="toggle-panel toggle-left">
-            <h1>Hello, Welcome!</h1>
-            <p>Don&apos;t have an account? Join our community today!</p>
-            <button 
-              className="toggle-btn" 
+          <div
+            className="toggle-panel toggle-left"
+            data-aos="fade-right"
+            data-aos-delay="1400"
+          >
+            <h1 data-aos="fade-down" data-aos-delay="1500">Hello, Welcome!</h1>
+            <p data-aos="fade-up" data-aos-delay="1600">
+              Don&apos;t have an account? Join our community today!
+            </p>
+            <button
+              className="toggle-btn"
               onClick={handleToggleToSignUp}
+              data-aos="zoom-in"
+              data-aos-delay="1700"
             >
               Register
             </button>

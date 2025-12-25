@@ -1,25 +1,26 @@
-// app/signup/page.tsx
+//  app/signup/page.tsx
 
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { 
-  signUpWithEmail, 
-  signInWithGoogle, 
-  signInWithGitHub,
-  initiatePhoneAuth 
-} from "@/app/lib/auth";
-import { 
-  FcGoogle,
-  FcPhone,
-  FcPhoneAndroid,
-  FcLock,
-  FcBusinessman,
-  FcApproval 
-} from "react-icons/fc";
+
+import { FcGoogle, FcPhone, FcPhoneAndroid, FcLock } from "react-icons/fc";
 import { AiOutlineMail, AiOutlineGithub, AiOutlineUser } from "react-icons/ai";
+import AOS from "aos";
+import "aos/dist/aos.css";
 import "../styles/AuthForm.css";
+
+// Dummy auth functions (replace with real ones)
+async function signUpWithEmail(email: string, password: string) {
+  return { user: { email }, error: null };
+}
+async function signInWithGoogle() {
+  return { user: { email: "google@example.com" }, error: null };
+}
+async function signInWithGitHub() {
+  return { user: { email: "github@example.com" }, error: null };
+}
 
 export default function SignUpPage() {
   const [email, setEmail] = useState("");
@@ -30,85 +31,86 @@ export default function SignUpPage() {
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
   const [loading, setLoading] = useState(false);
-  const [authMethod, setAuthMethod] = useState<"email" | "phone" | "">("");
+  const [authMethod, setAuthMethod] = useState<"email" | "phone">("email");
+  const [isTransitioning, setIsTransitioning] = useState(false);
+
   const router = useRouter();
+
+  useEffect(() => {
+    AOS.init({ duration: 1000, once: true, offset: 100 });
+    AOS.refresh();
+  }, [showPhoneInput]);
 
   const handleSignUp = async (e: React.FormEvent) => {
     e.preventDefault();
     setError("");
     setSuccess("");
     setLoading(true);
-    
-    const { user, error } = await signUpWithEmail(email, password);
-    
-    if (error) {
-      setError(error.message);
+
+    try {
+      const { user, error } = await signUpWithEmail(email, password);
+      if (error) setError((error as any)?.message || "Error during registration");
+      else if (user) {
+        setSuccess("Registration successful! Redirecting...");
+        setTimeout(() => router.push("/dashboard"), 1500);
+      }
+    } catch (err: any) {
+      setError(err?.message || "Unexpected error");
+    } finally {
       setLoading(false);
-    } else if (user) {
-      setSuccess("Registration successful! Redirecting to dashboard...");
-      setTimeout(() => router.push("/dashboard"), 1500);
     }
   };
 
   const handleGoogleSignIn = async () => {
-    setError("");
-    setSuccess("");
-    setLoading(true);
-    const { user, error } = await signInWithGoogle();
-    
-    if (error) {
-      setError(error.message);
-      setLoading(false);
-    } else if (user) {
-      setSuccess("Google registration successful! Redirecting...");
-      setTimeout(() => router.push("/dashboard"), 1500);
-    }
+    setError(""); setSuccess(""); setLoading(true);
+    try {
+      const { user, error } = await signInWithGoogle();
+      if (error) setError((error as any)?.message || "Google sign-in failed");
+      else if (user) {
+        setSuccess("Google registration successful! Redirecting...");
+        setTimeout(() => router.push("/dashboard"), 1500);
+      }
+    } finally { setLoading(false); }
   };
 
   const handleGitHubSignIn = async () => {
-    setError("");
-    setSuccess("");
-    setLoading(true);
-    const { user, error } = await signInWithGitHub();
-    
-    if (error) {
-      setError(error.message);
-      setLoading(false);
-    } else if (user) {
-      setSuccess("GitHub registration successful! Redirecting...");
-      setTimeout(() => router.push("/dashboard"), 1500);
-    }
+    setError(""); setSuccess(""); setLoading(true);
+    try {
+      const { user, error } = await signInWithGitHub();
+      if (error) setError((error as any)?.message || "GitHub sign-in failed");
+      else if (user) {
+        setSuccess("GitHub registration successful! Redirecting...");
+        setTimeout(() => router.push("/dashboard"), 1500);
+      }
+    } finally { setLoading(false); }
   };
 
-  const handlePhoneAuth = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setError("");
-    setSuccess("");
-    setLoading(true);
-    
-    const { confirmationResult, error } = await initiatePhoneAuth(phone);
-    
-    if (error) {
-      setError(error.message);
-      setLoading(false);
-    } else if (confirmationResult) {
-      setSuccess("Verification code sent to your phone!");
-    }
+  const togglePhoneInput = () => {
+    setIsTransitioning(true);
+    setTimeout(() => {
+      setShowPhoneInput(!showPhoneInput);
+      setAuthMethod(!showPhoneInput ? "phone" : "email");
+      setIsTransitioning(false);
+      setTimeout(() => AOS.refresh(), 50);
+    }, 300);
   };
 
-  const handleToggleToSignIn = () => {
-    router.push("/signin");
+  const goToSignIn = () => {
+    setIsTransitioning(true);
+    setTimeout(() => router.push("/signin"), 300);
   };
 
   return (
-    <div className="auth-container">
+    <div className="auth-container" data-aos="fade-up">
       <div className="auth-form-wrapper active">
-        {/* Registration Form */}
-        <div className="form-box register">
-          <form className="auth-form" onSubmit={authMethod === "phone" ? handlePhoneAuth : handleSignUp}>
-            <h1>Registration</h1>
-            
-            <div className="input-box">
+        <div
+          className={`form-box register ${isTransitioning ? "form-transition-out" : "form-transition-in"}`}
+          data-aos="zoom-in" data-aos-delay={200}
+        >
+          <form onSubmit={handleSignUp}>
+            <h1 data-aos="fade-down" data-aos-delay={300}>Registration</h1>
+
+            <div className="input-box" data-aos="fade-right" data-aos-delay={400}>
               <input
                 type="text"
                 placeholder="Username"
@@ -116,133 +118,75 @@ export default function SignUpPage() {
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
               />
-              <span className="icon">
-                <AiOutlineUser />
-              </span>
+              <span className="icon"><AiOutlineUser /></span>
             </div>
-            
+
             {!showPhoneInput ? (
               <>
-                <div className="input-box">
+                <div className="input-box" data-aos="fade-right" data-aos-delay={600}>
                   <input
                     type="email"
                     placeholder="Email"
-                    required={authMethod === "email"}
+                    required
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                   />
-                  <span className="icon">
-                    <AiOutlineMail />
-                  </span>
+                  <span className="icon"><AiOutlineMail /></span>
                 </div>
-                <div className="input-box">
+                <div className="input-box" data-aos="fade-left" data-aos-delay={700}>
                   <input
                     type="password"
                     placeholder="Password"
-                    required={authMethod === "email"}
+                    required
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                   />
-                  <span className="icon">
-                    <FcLock />
-                  </span>
+                  <span className="icon"><FcLock /></span>
                 </div>
               </>
             ) : (
-              <div className="input-box">
+              <div className="input-box" data-aos="fade-up" data-aos-delay={500}>
                 <input
                   type="tel"
                   placeholder="Phone number (+1234567890)"
-                  required={authMethod === "phone"}
+                  required
                   value={phone}
                   onChange={(e) => setPhone(e.target.value)}
                 />
-                <span className="icon">
-                  <FcPhoneAndroid />
-                </span>
+                <span className="icon"><FcPhoneAndroid /></span>
               </div>
             )}
-            
-            <div className="forgot-link">
-              <a href="#" onClick={() => setShowPhoneInput(!showPhoneInput)}>
+
+            <div className="forgot-link" data-aos="fade-up" data-aos-delay={800}>
+              <a href="#" onClick={togglePhoneInput}>
                 {showPhoneInput ? "Use Email Instead" : "Use Phone Instead"}
               </a>
             </div>
-            
-            {error && <div className="error-message">{error}</div>}
-            {success && <div className="success-message">{success}</div>}
-            
-            <button 
-              type="submit" 
-              className="auth-btn"
-              disabled={loading}
-              onClick={() => setAuthMethod(showPhoneInput ? "phone" : "email")}
-            >
-              {loading ? (
-                <>
-                  <span className="loading-spinner"></span>
-                  Registering...
-                </>
-              ) : (
-                'Register'
-              )}
+
+            {error && <div className="error-message" data-aos="fade-up">{error}</div>}
+            {success && <div className="success-message" data-aos="fade-up">{success}</div>}
+
+            <button type="submit" className="auth-btn" disabled={loading} data-aos="fade-up" data-aos-delay={900}>
+              {loading ? <> <span className="loading-spinner"></span> Registering... </> : "Register"}
             </button>
-            
-            <div className="social-providers">
+
+            <div className="social-providers" data-aos="fade-up" data-aos-delay={1000}>
               <div className="providers-title">Register with</div>
               <div className="social-buttons">
-                <button 
-                  type="button" 
-                  className="social-btn google"
-                  onClick={handleGoogleSignIn}
-                  disabled={loading}
-                  title="Google"
-                >
-                  <FcGoogle size={24} />
-                </button>
-                <button 
-                  type="button" 
-                  className="social-btn github"
-                  onClick={handleGitHubSignIn}
-                  disabled={loading}
-                  title="GitHub"
-                >
-                  <AiOutlineGithub size={24} />
-                </button>
-                <button 
-                  type="button" 
-                  className="social-btn phone"
-                  onClick={() => setShowPhoneInput(true)}
-                  disabled={loading}
-                  title="Phone"
-                >
-                  <FcPhone size={24} />
-                </button>
-                <button 
-                  type="button" 
-                  className="social-btn email"
-                  onClick={() => setShowPhoneInput(false)}
-                  disabled={loading}
-                  title="Email"
-                >
-                  <AiOutlineMail size={24} />
-                </button>
+                <button type="button" className="social-btn google" onClick={handleGoogleSignIn} disabled={loading} title="Google" data-aos="flip-left" data-aos-delay={1100}><FcGoogle size={24} /></button>
+                <button type="button" className="social-btn github" onClick={handleGitHubSignIn} disabled={loading} title="GitHub" data-aos="flip-left" data-aos-delay={1200}><AiOutlineGithub size={24} /></button>
+                <button type="button" className="social-btn phone" onClick={togglePhoneInput} disabled={loading} title="Phone" data-aos="flip-left" data-aos-delay={1300}><FcPhone size={24} /></button>
+                <button type="button" className="social-btn email" onClick={togglePhoneInput} disabled={loading} title="Email" data-aos="flip-left" data-aos-delay={1400}><AiOutlineMail size={24} /></button>
               </div>
             </div>
           </form>
         </div>
 
-        {/* Toggle Panel */}
         <div className="toggle-box">
-          <div className="toggle-panel toggle-right">
-            <h1>Welcome Back!</h1>
-            <p>Already have an account? Sign in to continue your journey!</p>
-            <button 
-              className="toggle-btn" 
-              onClick={handleToggleToSignIn}
-            >
-              Login
-            </button>
+          <div className="toggle-panel toggle-right" data-aos="fade-left" data-aos-delay={1500}>
+            <h1 data-aos="fade-down" data-aos-delay={1600}>Welcome Back!</h1>
+            <p data-aos="fade-up" data-aos-delay={1700}>Already have an account? Sign in to continue your journey!</p>
+            <button className="toggle-btn" onClick={goToSignIn} data-aos="zoom-in" data-aos-delay={1800}>Login</button>
           </div>
         </div>
       </div>

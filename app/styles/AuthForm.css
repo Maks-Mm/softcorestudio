@@ -425,3 +425,242 @@
         font-size: 28px;
     }
 }
+
+/* Add these animations to your existing AuthForm.css */
+
+/* Form Transition Animations */
+.form-transition-out {
+  animation: formSlideOut 0.5s ease-in-out forwards;
+}
+
+.form-transition-in {
+  animation: formSlideIn 0.5s ease-in-out forwards;
+}
+
+@keyframes formSlideOut {
+  0% {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+  50% {
+    opacity: 0.5;
+    transform: translateX(-20px) scale(0.95);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(20px) scale(0.9);
+    visibility: hidden;
+  }
+}
+
+@keyframes formSlideIn {
+  0% {
+    opacity: 0;
+    transform: translateX(20px) scale(0.9);
+    visibility: visible;
+  }
+  50% {
+    opacity: 0.5;
+    transform: translateX(-10px) scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+}
+
+/* Enhanced toggle panel animations */
+.toggle-panel.toggle-left {
+  left: 0;
+  transition-delay: 1.2s;
+  animation: fadeInLeft 0.8s ease-out;
+}
+
+.auth-form-wrapper.active .toggle-panel.toggle-left {
+  left: -50%;
+  transition-delay: .6s;
+  animation: fadeOutLeft 0.8s ease-out;
+}
+
+.toggle-panel.toggle-right {
+  right: -50%;
+  transition-delay: .6s;
+  animation: fadeOutRight 0.8s ease-out;
+}
+
+.auth-form-wrapper.active .toggle-panel.toggle-right {
+  right: 0;
+  transition-delay: 1.2s;
+  animation: fadeInRight 0.8s ease-out;
+}
+
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeOutLeft {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+}
+
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeOutRight {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+}
+
+/* Button hover animations */
+.auth-btn, .toggle-btn, .social-btn {
+  position: relative;
+  overflow: hidden;
+}
+
+.auth-btn::after, .toggle-btn::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 5px;
+  height: 5px;
+  background: rgba(255, 255, 255, 0.5);
+  opacity: 0;
+  border-radius: 100%;
+  transform: scale(1, 1) translate(-50%);
+  transform-origin: 50% 50%;
+}
+
+.auth-btn:focus:not(:active)::after,
+.toggle-btn:focus:not(:active)::after {
+  animation: ripple 1s ease-out;
+}
+
+@keyframes ripple {
+  0% {
+    transform: scale(0, 0);
+    opacity: 0.5;
+  }
+  100% {
+    transform: scale(20, 20);
+    opacity: 0;
+  }
+}
+
+/* Input field animations */
+.input-box input:focus {
+  animation: inputPulse 0.3s ease-out;
+}
+
+@keyframes inputPulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(116, 148, 236, 0.4);
+  }
+  100% {
+    box-shadow: 0 0 0 6px rgba(116, 148, 236, 0);
+  }
+}
+
+/* Social button icon animations */
+.social-btn i,
+.social-btn svg {
+  transition: transform 0.3s ease;
+}
+
+.social-btn:hover i,
+.social-btn:hover svg {
+  transform: scale(1.2) rotate(5deg);
+}
+
+/* Form entrance animation */
+.form-box {
+  animation: formEntrance 0.8s ease-out;
+}
+
+@keyframes formEntrance {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Loading animation enhancement */
+@keyframes pulse {
+  0% {
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.6;
+  }
+}
+
+.auth-btn:disabled {
+  animation: pulse 1.5s infinite;
+}
+
+/* Success message animation */
+.success-message {
+  animation: successSlideIn 0.5s ease-out;
+}
+
+@keyframes successSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Error message animation */
+.error-message {
+  animation: errorShake 0.5s ease-out;
+}
+
+@keyframes errorShake {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  10%, 30%, 50%, 70%, 90% {
+    transform: translateX(-5px);
+  }
+  20%, 40%, 60%, 80% {
+    transform: translateX(5px);
+  }
+}
