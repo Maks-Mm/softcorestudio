@@ -1,85 +1,182 @@
-Got it! Here’s a **structured roadmap / plan for your next job day**, focusing on integrating **API auth to Navbar buttons** and **Dashboard access** without diving into code.
+Perfect! Let’s organize your next steps, structure an exercise plan, and create a precise roadmap for the project, based on the current state of your code and the issues you described. I’ll break it down clearly and include examples for better understanding.
 
 ---
 
-## **📅 Next Job Day Plan: API Auth Integration**
+## **Current Issues / Observations**
 
-### **Goal**
+1. **No "Back" button after reaching dashboard** – users cannot navigate back to home easily.
+2. **Authentication** – only Google auth works; email/password or phone login is not implemented.
+3. **Backend limitations** – Vercel free hosting does not allow full backend; backend runs only locally.
+4. **Goal** – Make project universal:
 
-* Integrate Firebase/Google authentication for **Sign In / Sign Up buttons** in Navbar.
-* Enable **Dashboard access** only for authenticated users.
-* Prepare a scalable structure for future authentication features.
-
----
-
-### **1️⃣ Morning: Preparation & Setup (1.5–2h)**
-
-1. Review current Navbar structure and buttons.
-2. Check existing Firebase project configuration:
-
-   * Firebase console: Auth enabled (Google, Email/Password).
-   * Google Cloud Console: OAuth credentials set.
-3. Prepare environment variables for Firebase (API keys, project ID).
-4. Plan authentication flow:
-
-   * Unauthenticated → Sign In / Sign Up
-   * Authenticated → Dashboard / Logout
+   * Hosted backend for API login/register (paid hosting if needed)
+   * Local backend for skill development and demonstration
+   * Keep frontend hosted on Vercel
+   * Structure project in GitHub with backend/frontend folders
 
 ---
 
-### **2️⃣ Late Morning: Firebase Integration Planning (1–1.5h)**
+## **Next Steps / Roadmap**
 
-1. Decide on a **single source of truth** for user auth state.
-2. Map out **hooks or context** for managing auth state in Navbar and other components.
-3. Plan **conditional rendering** in Navbar for:
+### **Phase 1: Frontend Improvements**
 
-   * Logged-out state → Sign In / Sign Up
-   * Logged-in state → Dashboard / Logout
+1. **Add "Back to Home" functionality**
 
----
+   * Example:
 
-### **3️⃣ Early Afternoon: Auth Actions & Button Integration (1–1.5h)**
+     ```tsx
+     import { useRouter } from 'next/navigation';
+     const router = useRouter();
+     <button onClick={() => router.push('/')}>Go Back Home</button>
+     ```
 
-1. Define the actions for authentication:
+2. **Improve UI for login/register transitions**
 
-   * Sign In (Google / Email)
-   * Sign Up (Google / Email)
-   * Logout
-2. Connect these actions to Navbar buttons.
-3. Test each action in isolation to confirm it works with Firebase.
+   * Smooth AOS transitions for phone/email toggle are fine.
+   * Add error/success messages for all auth methods.
 
----
+3. **Refactor project dashboard**
 
-### **4️⃣ Mid Afternoon: Dashboard Access Control (1–1.5h)**
-
-1. Define rules for accessing the Dashboard:
-
-   * Only authenticated users can enter.
-   * Unauthenticated users redirected to login or home page.
-2. Plan how to pass the auth state to the Dashboard component.
-3. Map out **future scalability** for roles or permissions.
+   * Add a universal project card component to simplify maintenance.
+   * Ensure favorite state persists (`localStorage` already implemented – perfect).
 
 ---
 
-### **5️⃣ Late Afternoon: Testing & QA (1–2h)**
+### **Phase 2: Backend Development**
 
-1. Test all Navbar buttons for logged-in and logged-out scenarios.
-2. Test Dashboard access protection.
-3. Validate auth state persists on page refresh.
-4. Make notes for next improvements:
+1. **Set up backend locally**
 
-   * Multi-provider auth (Facebook, GitHub, etc.)
-   * Token management for API calls
-   * Error handling and notifications
+   * **Technologies**: Node.js, Express.js, MongoDB
+   * **Routes**:
+
+     * POST `/register` → store user credentials
+     * POST `/login` → validate user credentials
+     * POST `/auth/google` → handle Google OAuth
+     * POST `/auth/github` → handle GitHub OAuth
+   * **Example**:
+
+     ```ts
+     import express from "express";
+     import bcrypt from "bcrypt";
+     import jwt from "jsonwebtoken";
+     import User from "./models/User";
+
+     const app = express();
+     app.use(express.json());
+
+     app.post("/register", async (req, res) => {
+       const { email, password, username } = req.body;
+       const hashedPassword = await bcrypt.hash(password, 10);
+       const user = new User({ email, password: hashedPassword, username });
+       await user.save();
+       res.json({ success: true });
+     });
+
+     app.post("/login", async (req, res) => {
+       const { email, password } = req.body;
+       const user = await User.findOne({ email });
+       if (!user) return res.status(404).json({ error: "User not found" });
+       const match = await bcrypt.compare(password, user.password);
+       if (!match) return res.status(401).json({ error: "Invalid password" });
+       const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET!, { expiresIn: '1h' });
+       res.json({ token });
+     });
+     ```
+2. **Local API for testing**
+
+   * Use Postman or Insomnia to test backend routes.
+   * Frontend calls these endpoints using `fetch` or `axios`.
 
 ---
 
-### **6️⃣ Wrap-Up**
+### **Phase 3: Deployment Strategy**
 
-1. Document workflow and any edge cases discovered.
-2. Commit changes and prepare a short summary for the team or mentor.
-3. Set next-day goals: add additional providers, implement server-side auth, or role-based access.
+1. **Vercel Frontend**
+
+   * Keep your current frontend hosted on Vercel (free tier works fine).
+
+2. **Backend Hosting**
+
+   * Options:
+
+     * **Render.com** → free tier supports Node.js backend
+     * **Railway.app** → free tier, easy to deploy
+     * **Vercel Paid Plan** → full backend support
+   * Goal: backend should be online for API login/register, even when local machine is off.
+
+3. **Universal Project Setup**
+
+   * Folder structure in GitHub:
+
+     ```
+     softcore-studio/
+     ├─ frontend/   // Next.js + React
+     ├─ backend/    // Node.js + Express + MongoDB
+     └─ README.md
+     ```
+   * Both local and online backend should work interchangeably for skill demonstration and real deployment.
 
 ---
 
-If you want, I can also make a **visual timeline chart for the day**, so you can follow it hour by hour like a proper roadmap. It makes it much easier to stay on track. Do you want me to do that?
+### **Phase 4: Auth Integration**
+
+1. Connect frontend signup/signin forms to the backend API.
+
+   * Email/Password
+   * Phone (optional, extra)
+   * Social login (Google/GitHub) via backend OAuth endpoints
+2. Example fetch in frontend:
+
+   ```ts
+   const handleSignUp = async () => {
+     const res = await fetch('https://my-backend.com/register', {
+       method: 'POST',
+       headers: { 'Content-Type': 'application/json' },
+       body: JSON.stringify({ email, password, username })
+     });
+     const data = await res.json();
+     if (data.success) router.push('/dashboard');
+   };
+   ```
+
+---
+
+### **Phase 5: Showcase & Skills Development**
+
+1. Keep backend and frontend on GitHub for recruiters.
+2. Demonstrate:
+
+   * API integration
+   * Authentication system
+   * State management
+   * Frontend filters & dashboard
+3. Deploy frontend on Vercel to show live demo.
+
+---
+
+### **Phase 6: Optional Enhancements**
+
+1. Favorite projects saved on backend (sync across devices)
+2. Notifications for user actions (registration success, login fail, etc.)
+3. More interactive dashboard features:
+
+   * Export project portfolio
+   * Search suggestions
+   * Sorting by tech stack
+
+---
+
+### **Exercise / Skill Plan**
+
+* **Week 1**: Implement "Back to Home" and improve dashboard UI.
+* **Week 2**: Build backend locally (register/login routes) + connect MongoDB.
+* **Week 3**: Integrate frontend forms to call backend API.
+* **Week 4**: Deploy backend to Render.com or Railway.
+* **Week 5**: Test universal setup (local + online backend).
+* **Week 6**: Add extra features (favorites sync, notifications) and finalize GitHub portfolio.
+
+---
+
+I can also create a **visual roadmap diagram** showing the frontend/backend split, Vercel deployment, and GitHub structure for clearer understanding.
+
+Do you want me to make that diagram?

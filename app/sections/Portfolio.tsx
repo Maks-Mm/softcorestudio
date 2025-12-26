@@ -1,10 +1,9 @@
 // app/sections/Portfolio.tsx
-// app/sections/portfolio.tsx
 "use client";
 
 import React from "react";
 import "../styles/Portfolio.css";
-import { Button } from "../components/Button"; // import the button
+import { Button } from "../components/Button";
 
 interface PortfolioProps {
   onOpen?: () => void;
@@ -38,30 +37,33 @@ const Portfolio: React.FC<PortfolioProps> = ({ onOpen }) => {
   };
 
   return (
-    <div className="portfolio-wrapper"  id="portfolio">
-      <h2 className="portfolio-title">Our Successful Projects</h2>
-      <p className="portfolio-subtitle">Live production platforms we built:</p>
+    <div className="portfolio-wrapper" id="portfolio">
+      <div className="portfolio-container">
+        <div className="portfolio-header">
+          <h2 className="portfolio-title">Our Successful Projects</h2>
+          <p className="portfolio-subtitle">Live production platforms we built:</p>
+        </div>
 
-      <div className="portfolio-grid">
-        {projects.map((p, i) => (
-          <div key={i} className="portfolio-card">
-            <div
-              className="portfolio-image"
-              style={{ backgroundImage: `url(${p.img})` }}
-            />
-
-            <div className="portfolio-content">
-              <h3>{p.title}</h3>
-              <p>{p.desc}</p>
-              {/* Use the Button component instead of span */}
-              <Button
-                text="Open Project →"
-                variant="white"
-                onClick={() => openProject(p.link)}
+        <div className="portfolio-grid">
+          {projects.map((p, i) => (
+            <div key={i} className="portfolio-card">
+              <div
+                className="portfolio-image"
+                style={{ backgroundImage: `url(${p.img})` }}
               />
+
+              <div className="portfolio-content">
+                <h3>{p.title}</h3>
+                <p>{p.desc}</p>
+                <Button
+                  text="Open Project →"
+                  variant="white"
+                  onClick={() => openProject(p.link)}
+                />
+              </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </div>
   );
