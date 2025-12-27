@@ -430,7 +430,7 @@ const Dashboard: React.FC = () => {
         {/* Left Sidebar with Header, Search and Tech Filter */}
         <nav className={styles.techSidebar}>
           <div className={styles.menuHeader}>
-            <h1>Project Portfolio Dashboard</h1>
+            <h1> Dashboard</h1>
             <p>Explore my collection of web development projects showcasing various technologies and frameworks</p>
             
             <div className={styles.projectStats}>
@@ -507,7 +507,7 @@ const Dashboard: React.FC = () => {
         {/* Main Content Area */}
         <main className={styles.techContent}>
           <div className={styles.contentHeader}>
-            <h2>Project Portfolio</h2>
+            <h2>Projects</h2>
             <p>Filter projects by selecting technologies from the left menu. Each project showcases different combinations of technologies from my portfolio.</p>
           </div>
 
