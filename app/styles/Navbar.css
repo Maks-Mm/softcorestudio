@@ -40,7 +40,7 @@
   bottom: -6px;
 }
 
-/* hover / touch = confirmation */
+/* hover / touch = confirmation - DEFAULT RED (for Sign Out, Back) */
 .nav-action-btn:hover,
 .nav-action-btn:focus-visible {
   color: #EF233C;
@@ -59,7 +59,7 @@
   transform: scale(0.97);
 }
 
-/* optional red filled version (Sign Up stays special) */
+/* optional red filled version (Sign Up) */
 .nav-action-btn.primary {
   background: #EF233C;
   color: #EDF2F4;
@@ -68,8 +68,36 @@
 
 .nav-action-btn.primary:hover {
   background: #d61f35;
+  color: #EDF2F4;
+  border-color: #d61f35;
 }
 
+.nav-action-btn.primary:hover::before,
+.nav-action-btn.primary:hover::after,
+.nav-action-btn.primary:focus-visible::before,
+.nav-action-btn.primary:focus-visible::after {
+  background: #d61f35;
+}
+
+/* SPECIFIC STYLE FOR SIGN IN BUTTON - WHITE HOVER */
+.signin-btn {
+  background-color: transparent;
+  color: #EDF2F4;
+  border: 1px solid #EDF2F4;
+}
+
+.signin-btn:hover,
+.signin-btn:focus-visible {
+  color: #EDF2F4 !important;
+  border-color: #EDF2F4 !important;
+}
+
+.signin-btn:hover::before,
+.signin-btn:hover::after,
+.signin-btn:focus-visible::before,
+.signin-btn:focus-visible::after {
+  background: #EDF2F4 !important;
+}
 
 /* TOP NAVBAR */
 .top-nav {
@@ -219,16 +247,12 @@
   cursor: pointer;
 }
 
-.nav-buttons .signup-btn {
-  background-color: #ef233c;
-  color: #EDF2F4 !important;
-}
-
-.nav-buttons .signin-btn {
+/* Remove old signin-btn styles from .nav-buttons as we have specific ones now */
+/* .nav-buttons .signin-btn {
   background-color: transparent;
   color: #EDF2F4;
   border: 1px solid #EDF2F4;
-}
+} */
 
 /* Hamburger animation */
 .hamburger.active span:nth-child(1) {
@@ -337,7 +361,6 @@
     gap: 1rem;
   }
 }
-
 
 .nav-loading {
   color: #666;

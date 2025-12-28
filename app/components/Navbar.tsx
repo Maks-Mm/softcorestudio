@@ -135,7 +135,7 @@ export default function Navbar() {
                     Sign Up
                   </button>
                   <button
-                    className="nav-action-btn"
+                    className="nav-action-btn signin-btn"  // Added signin-btn class
                     onClick={() => router.push("/signin")}
                   >
                     Sign In
