@@ -1,6 +1,7 @@
+// app/components/Hero.tsx
+
 import React from "react";
 import "../styles/Hero.css";
-
 
 interface HeroProps {
   onOpen?: () => void;
@@ -17,8 +18,6 @@ const Hero: React.FC<HeroProps> = ({ onOpen }) => {
         <p className="hero-subtext">
           We build scalable platforms and services for private or global clients.
         </p>
-
-       
 
         <div className="hero-buttons">
           <button

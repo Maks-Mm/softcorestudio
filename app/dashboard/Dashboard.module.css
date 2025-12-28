@@ -433,3 +433,6 @@
     padding: 20px;
   }
 }
+.dashboardContainer {
+  padding-top: 90px; /* space for navbar */
+}

@@ -1,10 +1,4 @@
-Perfect! Let’s organize your next steps, structure an exercise plan, and create a precise roadmap for the project, based on the current state of your code and the issues you described. I’ll break it down clearly and include examples for better understanding.
 
----
-
-## **Current Issues / Observations**
-
-1. **No "Back" button after reaching dashboard** – users cannot navigate back to home easily.
 2. **Authentication** – only Google auth works; email/password or phone login is not implemented.
 3. **Backend limitations** – Vercel free hosting does not allow full backend; backend runs only locally.
 4. **Goal** – Make project universal:
