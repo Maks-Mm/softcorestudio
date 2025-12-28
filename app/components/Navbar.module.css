@@ -1,0 +1,348 @@
+/* Debug styling - make buttons very obvious */
+.btn.back-btn {
+  background-color: #000000 !important;
+  color: #FFFFFF !important;
+  border: 2px solid #666666 !important;
+  border-radius: 8px !important;
+  padding: 10px 20px !important;
+  font-weight: bold !important;
+  cursor: pointer !important;
+}
+
+/* Hover state for debugging */
+.btn.back-btn:hover {
+  background-color: #333333 !important;
+  border-color: #999999 !important;
+}
+
+/* Make sure buttons are visible */
+.nav-buttons {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  flex-wrap: nowrap;
+}
+
+.nav-buttons .btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 40px;
+  white-space: nowrap;
+}
+
+/* User email styling */
+.user-email {
+  color: #EDF2F4;
+  padding: 5px 10px;
+  background: rgba(116, 148, 236, 0.2);
+  border-radius: 4px;
+  font-size: 0.9rem;
+  max-width: 200px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.top-nav {
+  z-index: 100;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.2);
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+  /* Add bottom padding to match top */
+}
+
+.top-nav.sticky {
+  position: fixed;
+}
+
+.animated.fadeInDown {
+  animation: fadeInDown 0.6s ease both;
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.list-inline {
+  display: flex;
+  gap: 2rem;
+  justify-content: flex-end;
+  align-items: center;
+  /* This should center vertically */
+  padding-left: 1rem;
+  flex-wrap: wrap;
+  height: 100%;
+  /* Add this */
+}
+
+.list-inline-item {
+  list-style: none;
+  margin-right: 1rem;
+  /* default spacing */
+}
+
+.list-inline-item.m-r-0 {
+  margin-right: 0;
+}
+
+.list-inline-item a {
+  font-size: 1.1rem;
+  color: #EDF2F4;
+  /* anti-white */
+  text-decoration: none;
+  border-bottom: 3px solid transparent;
+  padding-bottom: 5px;
+  transition: 0.25s;
+  cursor: pointer;
+  display: inline-flex;
+  /* Add this */
+  align-items: center;
+  /* Add this */
+  height: 100%;
+  /* Add this */
+}
+
+.list-inline-item a:hover {
+  color: #EF233C;
+  /* imperial red */
+  border-color: #EF233C;
+}
+
+.signup-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75em 1.5em;
+  line-height: normal;
+  background-color: #ef233c;
+  color: #EDF2F4 !important;
+  border-radius: 2px;
+  margin-left: 1rem;
+  text-align: center;
+  vertical-align: middle;
+  /* Add this */
+  border: none;
+  /* Add this for consistency */
+  font-size: 1.1rem;
+  /* Match font size with other links */
+  cursor: pointer;
+  height: auto;
+  /* Remove any fixed height */
+  min-height: 44px;
+  /* Optional: for better touch target */
+}
+
+/* HAMBURGER MENU (NEW ADDITION) */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  gap: 5px;
+  z-index: 101;
+  padding: 10px;
+  background: rgba(255, 255, 255, 0.1);
+  /* translucent */
+  backdrop-filter: blur(10px);
+  /* glass effect */
+  border-radius: 8px;
+  transition: background 0.3s ease;
+}
+
+.hamburger:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.hamburger span {
+  width: 25px;
+  height: 3px;
+  background: #EDF2F4;
+  transition: 0.3s;
+}
+
+.nav-buttons {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.nav-buttons .btn {
+  min-width: 100px;
+  font-size: 1.1rem;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+}
+
+.nav-buttons .signup-btn {
+  background-color: #ef233c;
+  color: #EDF2F4 !important;
+}
+
+.nav-buttons .signin-btn {
+  background-color: transparent;
+  color: #EDF2F4;
+  border: 1px solid #EDF2F4;
+}
+
+/* Hamburger animation */
+.hamburger.active span:nth-child(1) {
+  transform: rotate(45deg) translate(6px, 6px);
+}
+
+.hamburger.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger.active span:nth-child(3) {
+  transform: rotate(-45deg) translate(7px, -6px);
+}
+
+/* MENU OVERLAY (NEW ADDITION) */
+.menu-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 99;
+  display: none;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .container {
+    padding: 0 1rem;
+    justify-content: space-between;
+    display: flex;
+    align-items: center;
+  }
+
+  .hamburger {
+    display: flex;
+  }
+
+  .list-inline {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 80%;
+    max-width: 300px;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.95);
+    flex-direction: column;
+    padding: 5rem 2rem 2rem;
+    transition: right 0.3s ease;
+    z-index: 100;
+    justify-content: flex-start;
+    gap: 1.5rem;
+    align-items: flex-start;
+  }
+
+  .list-inline.active {
+    right: 0;
+  }
+
+  .list-inline-item {
+    width: 100%;
+    margin-right: 0;
+  }
+
+  .list-inline-item a {
+    font-size: 1.1rem;
+    width: 100%;
+    display: block;
+    padding: 0.75rem 0;
+    text-align: left;
+  }
+
+  .signup-btn {
+    width: 100%;
+    text-align: center;
+    margin-left: 0;
+    margin-top: 0.5rem;
+    /* Add some spacing on mobile */
+  }
+
+  .menu-overlay.active {
+    display: block;
+  }
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+  .nav-buttons {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .nav-buttons .btn {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .list-inline-item a {
+    font-size: 1rem;
+  }
+
+  .list-inline {
+    gap: 1rem;
+  }
+}
+
+
+.nav-loading {
+  color: #666;
+  font-size: 14px;
+  padding: 10px;
+  text-align: center;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+/* Ensure buttons are properly spaced on mobile */
+@media (max-width: 768px) {
+  .nav-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+    margin-top: 15px;
+    padding: 0 10px;
+  }
+  
+  .nav-buttons .btn {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .user-email {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 10px;
+    padding: 8px;
+    background: rgba(116, 148, 236, 0.1);
+    border-radius: 4px;
+    word-break: break-all;
+  }
+}

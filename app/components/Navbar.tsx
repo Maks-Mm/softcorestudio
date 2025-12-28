@@ -1,24 +1,35 @@
 // app/components/Navbar.tsx
-
-
-// app/components/Navbar.tsx
 "use client";
 
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useStickyNav } from "../hooks/useStickyNav";
 import { useSmoothScroll } from "../hooks/useSmoothScroll";
-import "../styles/Navbar.css";
 import { signOutUser } from "../lib/auth";
 import { useAuth } from '../hooks/useAuth';
+import { usePathname } from "next/navigation";
+import "../styles/Navbar.css";
+
 
 export default function Navbar() {
+
   const { user, loading } = useAuth(); // Get user and loading from the hook
+
+
+
   const isSticky = useStickyNav("home");
   const scrollTo = useSmoothScroll();
   const router = useRouter();
   const [redirectToPortfolio, setRedirectToPortfolio] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const pathname = usePathname();
+  const isDashboard = pathname.startsWith("/dashboard");
+
+ /*
+  console.log('Navbar - User:', user);
+  console.log('Navbar - Loading:', loading);
+  console.log('Navbar - Pathname:', pathname);
+ */
 
   const handleNavClick = (targetId: string) => {
     if (targetId === "portfolio" && window.location.pathname !== "/") {
@@ -93,26 +104,46 @@ export default function Navbar() {
             </li>
 
             <div className="nav-buttons">
-              {user ? (
-                <>
-                  <span className="user-email">
-                    {user.email || "User"}
-                  </span>
-                  <button className="btn signin-btn" onClick={handleSignOut}>
-                    Sign Out
-                  </button>
-                </>
-              ) : (
-                <>
-                  <button className="btn signup-btn" onClick={() => router.push("/signup")}>
-                    Sign Up
-                  </button>
-                  <button className="btn signin-btn" onClick={() => router.push("/signin")}>
-                    Sign In
-                  </button>
-                </>
-              )}
-            </div>
+  {isDashboard ? (
+    // ✅ DASHBOARD: ONLY BACK BUTTON
+    <button
+      className="btn back-btn"
+      onClick={() => router.push("/")}
+      style={{
+        backgroundColor: "black",
+        color: "white",
+        borderRadius: "35%",
+        border: "1px solid gray",
+        padding: "8px 16px",
+      }}
+    >
+      ⬅ Go back home
+    </button>
+  ) : user ? (
+    // ✅ LOGGED IN (NOT DASHBOARD)
+    <>
+      <span className="user-email">
+        {user.email || "User"}
+      </span>
+      <button className="btn signin-btn" onClick={handleSignOut}>
+        Sign Out
+      </button>
+    </>
+  ) : (
+    // ✅ NOT LOGGED IN
+    <>
+      <button className="btn signup-btn" onClick={() => router.push("/signup")}>
+        Sign Up
+      </button>
+      <button className="btn signin-btn" onClick={() => router.push("/signin")}>
+        Sign In
+      </button>
+    </>
+  )}
+</div>
+
+
+
           </ul>
         </div>
       </nav>
