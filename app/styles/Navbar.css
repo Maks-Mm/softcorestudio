@@ -1,3 +1,76 @@
+/* === NAV ACTION BUTTON (UNIFIED) === */
+.nav-action-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-width: 120px;
+  min-height: 44px;
+
+  padding: 0.55rem 1.4rem;
+  font-size: 1.1rem;
+
+  background: transparent;
+  color: #EDF2F4;
+  border: 1px solid #EDF2F4;
+  border-radius: 2px;
+
+  cursor: pointer;
+  transition: color 0.25s ease, border-color 0.25s ease;
+}
+
+/* top & bottom confirm lines */
+.nav-action-btn::before,
+.nav-action-btn::after {
+  content: "";
+  position: absolute;
+  left: 8%;
+  width: 84%;
+  height: 2px;
+  background: transparent;
+  transition: background 0.25s ease;
+}
+
+.nav-action-btn::before {
+  top: -6px;
+}
+
+.nav-action-btn::after {
+  bottom: -6px;
+}
+
+/* hover / touch = confirmation */
+.nav-action-btn:hover,
+.nav-action-btn:focus-visible {
+  color: #EF233C;
+  border-color: #EF233C;
+}
+
+.nav-action-btn:hover::before,
+.nav-action-btn:hover::after,
+.nav-action-btn:focus-visible::before,
+.nav-action-btn:focus-visible::after {
+  background: #EF233C;
+}
+
+/* active click */
+.nav-action-btn:active {
+  transform: scale(0.97);
+}
+
+/* optional red filled version (Sign Up stays special) */
+.nav-action-btn.primary {
+  background: #EF233C;
+  color: #EDF2F4;
+  border-color: #EF233C;
+}
+
+.nav-action-btn.primary:hover {
+  background: #d61f35;
+}
+
+
 /* TOP NAVBAR */
 .top-nav {
   z-index: 100;

@@ -25,11 +25,11 @@ export default function Navbar() {
   const pathname = usePathname();
   const isDashboard = pathname.startsWith("/dashboard");
 
- /*
-  console.log('Navbar - User:', user);
-  console.log('Navbar - Loading:', loading);
-  console.log('Navbar - Pathname:', pathname);
- */
+  /*
+   console.log('Navbar - User:', user);
+   console.log('Navbar - Loading:', loading);
+   console.log('Navbar - Pathname:', pathname);
+  */
 
   const handleNavClick = (targetId: string) => {
     if (targetId === "portfolio" && window.location.pathname !== "/") {
@@ -104,43 +104,46 @@ export default function Navbar() {
             </li>
 
             <div className="nav-buttons">
-  {isDashboard ? (
-    // ✅ DASHBOARD: ONLY BACK BUTTON
-    <button
-      className="btn back-btn"
-      onClick={() => router.push("/")}
-      style={{
-        backgroundColor: "black",
-        color: "white",
-        borderRadius: "35%",
-        border: "1px solid gray",
-        padding: "8px 16px",
-      }}
-    >
-      ⬅ Go back home
-    </button>
-  ) : user ? (
-    // ✅ LOGGED IN (NOT DASHBOARD)
-    <>
-      <span className="user-email">
-        {user.email || "User"}
-      </span>
-      <button className="btn signin-btn" onClick={handleSignOut}>
-        Sign Out
-      </button>
-    </>
-  ) : (
-    // ✅ NOT LOGGED IN
-    <>
-      <button className="btn signup-btn" onClick={() => router.push("/signup")}>
-        Sign Up
-      </button>
-      <button className="btn signin-btn" onClick={() => router.push("/signin")}>
-        Sign In
-      </button>
-    </>
-  )}
-</div>
+              {isDashboard ? (
+                /* DASHBOARD → BACK HOME */
+                <button
+                  className="nav-action-btn"
+                  onClick={() => router.push("/")}
+                >
+                  Back
+                </button>
+              ) : user ? (
+                /* LOGGED IN */
+                <>
+                  <span className="user-email">
+                    {user.email || "User"}
+                  </span>
+                  <button
+                    className="nav-action-btn"
+                    onClick={handleSignOut}
+                  >
+                    Sign Out
+                  </button>
+                </>
+              ) : (
+                /* NOT LOGGED IN */
+                <>
+                  <button
+                    className="nav-action-btn primary"
+                    onClick={() => router.push("/signup")}
+                  >
+                    Sign Up
+                  </button>
+                  <button
+                    className="nav-action-btn"
+                    onClick={() => router.push("/signin")}
+                  >
+                    Sign In
+                  </button>
+                </>
+              )}
+            </div>
+
 
 
 
