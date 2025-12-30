@@ -1,5 +1,5 @@
 // frontend/app/lib/auth.ts
-const API_URL = "https://your-backend-domain.com"; // replace with your deployed backend URL
+const API_URL = process.env.NEXT_PUBLIC_API_URL!;
 
 // Sign in with email/password
 export const signInWithEmail = async (email: string, password: string) => {
