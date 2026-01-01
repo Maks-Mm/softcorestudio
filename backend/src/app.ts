@@ -1,4 +1,4 @@
-//backend/src/config/db.ts
+//backend/src/app.ts
 
 import express from "express";
 import cors from "cors";
@@ -6,16 +6,18 @@ import authRoutes from "./routes/auth.routes";
 
 const app = express();
 
-// CORS configuration
-app.use(cors({
-  origin: [
-    "http://localhost:3000",                
-    "https://softcorestudio.vercel.app"     
-  ],
-  credentials: true
-}));
+// CORS
+app.use(
+  cors({
+    origin: [
+      "http://localhost:3000",
+      "https://softcorestudio.vercel.app",
+    ],
+    credentials: true,
+  })
+);
 
-// Parse JSON
+// Parse JSON (CRITICAL)
 app.use(express.json());
 
 // Routes
