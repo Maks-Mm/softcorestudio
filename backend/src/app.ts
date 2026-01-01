@@ -6,6 +6,8 @@ import authRoutes from "./routes/auth.routes";
 
 const app = express();
 
+// Parse JSON (CRITICAL)
+app.use(express.json());
 // CORS
 app.use(
   cors({
@@ -17,8 +19,6 @@ app.use(
   })
 );
 
-// Parse JSON (CRITICAL)
-app.use(express.json());
 
 // Routes
 app.use("/api/auth", authRoutes);

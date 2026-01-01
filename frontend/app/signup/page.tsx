@@ -1,4 +1,4 @@
-//  app/signup/page.tsx
+// app/signup/page.tsx
 
 "use client";
 
@@ -11,10 +11,37 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import "../styles/AuthForm.css";
 
-// Dummy auth functions (replace with real ones)
-async function signUpWithEmail(email: string, password: string) {
-  return { user: { email }, error: null };
+async function signUpWithEmail(email: string, password: string, username: string) {
+  try {
+    const res = await fetch(`http://localhost:5000/api/auth/register`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ email, password, username }),
+    });
+
+    const text = await res.text();
+    let data;
+    try {
+      data = JSON.parse(text);
+    } catch {
+      console.error("Invalid JSON response:", text);
+      return { user: null, error: "Invalid response from server" };
+    }
+
+    if (!res.ok) {
+      return { user: null, error: data.error || "Failed to register" };
+    }
+
+    return { user: data, error: null };
+  } catch (err: any) {
+    return { user: null, error: err.message || "Network error" };
+  }
 }
+
+
+// Placeholder functions for Google/GitHub (still not implemented)
 async function signInWithGoogle() {
   return { user: { email: "google@example.com" }, error: null };
 }
@@ -48,8 +75,9 @@ export default function SignUpPage() {
     setLoading(true);
 
     try {
-      const { user, error } = await signUpWithEmail(email, password);
-      if (error) setError((error as any)?.message || "Error during registration");
+      // Call the real API and include username
+      const { user, error } = await signUpWithEmail(email, password, username);
+      if (error) setError(error);
       else if (user) {
         setSuccess("Registration successful! Redirecting...");
         setTimeout(() => router.push("/dashboard"), 1500);
@@ -65,7 +93,7 @@ export default function SignUpPage() {
     setError(""); setSuccess(""); setLoading(true);
     try {
       const { user, error } = await signInWithGoogle();
-      if (error) setError((error as any)?.message || "Google sign-in failed");
+      if (error) setError(error || "Google sign-in failed");
       else if (user) {
         setSuccess("Google registration successful! Redirecting...");
         setTimeout(() => router.push("/dashboard"), 1500);
@@ -77,7 +105,7 @@ export default function SignUpPage() {
     setError(""); setSuccess(""); setLoading(true);
     try {
       const { user, error } = await signInWithGitHub();
-      if (error) setError((error as any)?.message || "GitHub sign-in failed");
+      if (error) setError(error || "GitHub sign-in failed");
       else if (user) {
         setSuccess("GitHub registration successful! Redirecting...");
         setTimeout(() => router.push("/dashboard"), 1500);

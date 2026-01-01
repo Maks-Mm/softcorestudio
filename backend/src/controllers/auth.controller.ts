@@ -7,6 +7,9 @@ import User from "../models/User";
 
 /* REGISTER */
 export const register = async (req: Request, res: Response) => {
+
+   console.log("🔥 REGISTER HIT");
+  console.log("➡️ BODY:", req.body);
   try {
     let { email, password, username } = req.body || {};
 
