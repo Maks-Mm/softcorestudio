@@ -1,4 +1,8 @@
 // frontend/app/lib/auth.ts
+
+import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { getAuthInstance } from "./firebase";
+
 const API_URL = process.env.NEXT_PUBLIC_API_URL!;
 
 /* =======================
@@ -27,26 +31,53 @@ export const signInWithEmail = async (email: string, password: string) => {
 };
 
 /* =======================
-   REGISTER
+   GOOGLE LOGIN
 ======================= */
-export const registerUser = async (email: string, username: string, password: string) => {
+export const signInWithGoogle = async () => {
   try {
-    const res = await fetch(`${API_URL}/api/auth/register`, {
+    const auth = getAuthInstance();
+    if (!auth) {
+      return { user: null, error: { message: "Firebase not initialized" } };
+    }
+
+    const provider = new GoogleAuthProvider();
+    const result = await signInWithPopup(auth, provider);
+
+    const firebaseUser = result.user;
+    const idToken = await firebaseUser.getIdToken();
+
+    const res = await fetch(`${API_URL}/api/auth/google`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email, username, password }),
+      body: JSON.stringify({ idToken }),
     });
 
     const data = await res.json();
 
     if (!res.ok) {
-      return { success: false, error: { message: data.error || "Registration failed" } };
+      return { user: null, error: { message: data.error || "Google login failed" } };
     }
 
-    return { success: true, error: null };
+    localStorage.setItem("authToken", data.token);
+
+    return {
+      user: {
+        email: firebaseUser.email,
+        name: firebaseUser.displayName,
+      },
+      token: data.token,
+      error: null,
+    };
   } catch (err: any) {
-    return { success: false, error: { message: err.message } };
+    return { user: null, error: { message: err.message } };
   }
+};
+
+/* =======================
+   GITHUB (PLACEHOLDER)
+======================= */
+export const signInWithGitHub = async () => {
+  return { user: null, error: { message: "GitHub login not implemented yet" } };
 };
 
 /* =======================
@@ -54,7 +85,7 @@ export const registerUser = async (email: string, username: string, password: st
 ======================= */
 export const signOutUser = async () => {
   localStorage.removeItem("authToken");
-  return { success: true, error: null }; // ✅ returns object
+  return { success: true, error: null };
 };
 
 /* =======================
@@ -66,24 +97,12 @@ export const getCurrentUserSync = () => {
 
   try {
     const payload = JSON.parse(atob(token.split(".")[1]));
-    return { id: payload.id };
+    return { id: payload.id, email: payload.email };
   } catch {
     return null;
   }
 };
 
-// OPTIONAL: async version for hooks if needed
 export const getCurrentUser = async () => {
   return getCurrentUserSync();
-};
-
-/* =======================
-   OAUTH PLACEHOLDERS
-======================= */
-export const signInWithGoogle = async () => {
-  return { user: null, error: { message: "Google login not implemented yet" } };
-};
-
-export const signInWithGitHub = async () => {
-  return { user: null, error: { message: "GitHub login not implemented yet" } };
 };

@@ -17,9 +17,10 @@ const UserSchema = new mongoose.Schema<IUser>(
       lowercase: true,
       trim: true,
     },
-    password: { type: String, required: true },
+    password: { type: String, required: false },
     username: { type: String },
   },
+  
   { timestamps: true }
 );
 
