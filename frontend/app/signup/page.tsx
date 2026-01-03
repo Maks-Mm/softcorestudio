@@ -80,7 +80,7 @@ export default function SignUpPage() {
       if (error) setError(error);
       else if (user) {
         setSuccess("Registration successful! Redirecting...");
-        setTimeout(() => router.push("/dashboard"), 1500);
+        setTimeout(() => router.push("/signin"), 1500);
       }
     } catch (err: any) {
       setError(err?.message || "Unexpected error");
