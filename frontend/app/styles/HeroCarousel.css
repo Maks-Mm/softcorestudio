@@ -38,16 +38,21 @@
   font-weight: 700;
   color: white;
   margin-bottom: 1.5rem;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.4);
   line-height: 1.2;
+  letter-spacing: -0.5px;
 }
 
 .carousel-subtitle {
   font-size: 1.5rem;
-  color: rgba(255, 255, 255, 0.9);
+  color: rgba(255, 255, 255, 0.95);
   margin-bottom: 2.5rem;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.3);
   line-height: 1.6;
+  font-weight: 300;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .carousel-cta {
@@ -60,25 +65,58 @@
   border-radius: 50px;
   cursor: pointer;
   transition: all 0.3s ease;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 20px rgba(102, 126, 234, 0.3);
   text-transform: uppercase;
   letter-spacing: 1px;
+  position: relative;
+  overflow: hidden;
+}
+
+.carousel-cta::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: 0.5s;
 }
 
 .carousel-cta:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 6px 25px rgba(102, 126, 234, 0.4);
   background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
 }
 
+.carousel-cta:hover::before {
+  left: 100%;
+}
+
+/* Lighter, polished overlay */
 .carousel-overlay {
   position: absolute;
   inset: 0;
   background: linear-gradient(
-    rgba(43, 45, 66, 0.75),
-    rgba(43, 45, 66, 0.75)
+    135deg,
+    rgba(30, 32, 48, 0.65) 0%,
+    rgba(40, 42, 60, 0.55) 50%,
+    rgba(30, 32, 48, 0.65) 100%
   );
   z-index: 2;
+}
+
+/* Add a subtle vignette effect for more depth */
+.carousel-overlay::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse at center,
+    transparent 0%,
+    rgba(0, 0, 0, 0.2) 100%
+  );
+  pointer-events: none;
 }
 
 /* Controls */
@@ -90,25 +128,44 @@
   display: flex;
   gap: 14px;
   z-index: 4;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(8px);
+  padding: 12px 20px;
+  border-radius: 30px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
 }
 
 .carousel-dot {
   width: 12px;
   height: 12px;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.4);
   cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.carousel-dot::before {
+  content: '';
+  position: absolute;
+  top: -4px;
+  left: -4px;
+  right: -4px;
+  bottom: -4px;
+  border-radius: 50%;
+  background: transparent;
   transition: all 0.3s ease;
 }
 
 .carousel-dot:hover {
   transform: scale(1.3);
-  background: rgba(255, 255, 255, 0.8);
+  background: rgba(255, 255, 255, 0.9);
 }
 
 .carousel-dot.active {
   background: #fff;
   transform: scale(1.4);
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
 }
 
 /* Arrows */
@@ -126,10 +183,10 @@
   width: 60px;
   height: 60px;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.1);
   color: white;
   font-size: 32px;
-  border: none;
+  border: 1px solid rgba(255, 255, 255, 0.2);
   cursor: pointer;
   backdrop-filter: blur(10px);
   transition: all 0.3s ease;
@@ -141,6 +198,8 @@
 .carousel-nav-btn:hover {
   background: rgba(255, 255, 255, 0.25);
   transform: scale(1.1);
+  border-color: rgba(255, 255, 255, 0.3);
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
 }
 
 @keyframes fadeInUp {
@@ -152,6 +211,20 @@
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+/* Add a subtle pulse animation for active slide */
+@keyframes pulseGlow {
+  0%, 100% {
+    opacity: 0.8;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+.carousel-slide.active .carousel-content {
+  animation: fadeInUp 1s ease-out, pulseGlow 3s ease-in-out infinite;
 }
 
 /* Responsive */
@@ -174,6 +247,11 @@
     height: 50px;
     font-size: 26px;
   }
+  
+  .carousel-controls {
+    padding: 10px 16px;
+    bottom: 30px;
+  }
 }
 
 @media (max-width: 480px) {
@@ -187,5 +265,21 @@
   
   .carousel-content {
     padding: 0 15px;
+  }
+  
+  .carousel-nav-btn {
+    width: 45px;
+    height: 45px;
+    font-size: 22px;
+    padding: 0 12px;
+  }
+  
+  .carousel-overlay {
+    background: linear-gradient(
+      135deg,
+      rgba(30, 32, 48, 0.7) 0%,
+      rgba(40, 42, 60, 0.6) 50%,
+      rgba(30, 32, 48, 0.7) 100%
+    );
   }
 }

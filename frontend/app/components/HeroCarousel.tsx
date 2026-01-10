@@ -57,7 +57,6 @@ export default function HeroCarousel() {
   }, []);
 
   const handleCtaClick = () => {
-    // Smooth scroll to contact/consultation section
     const contactSection = document.getElementById('contact-section');
     if (contactSection) {
       contactSection.scrollIntoView({ behavior: 'smooth' });
@@ -89,6 +88,7 @@ export default function HeroCarousel() {
         </div>
       ))}
 
+      {/* Lighter overlay with gradient */}
       <div className="carousel-overlay" />
 
       {/* Navigation */}
