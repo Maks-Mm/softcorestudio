@@ -4,18 +4,14 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-
   min-width: 120px;
   min-height: 44px;
-
   padding: 0.55rem 1.4rem;
   font-size: 1.1rem;
-
   background: transparent;
   color: #EDF2F4;
   border: 1px solid #EDF2F4;
   border-radius: 2px;
-
   cursor: pointer;
   transition: color 0.25s ease, border-color 0.25s ease;
 }
@@ -53,7 +49,6 @@
 .nav-action-btn:focus-visible::after {
   background: #EF233C;
 }
-
 /* active click */
 .nav-action-btn:active {
   transform: scale(0.97);
@@ -63,7 +58,7 @@
 .nav-action-btn.primary {
   background: #EF233C;
   color: #EDF2F4;
-  border-color: #EF233C;
+  border: 1px solid #EDF2F4; /* Changed from #EF233C to #EDF2F4 for visibility */
 }
 
 .nav-action-btn.primary:hover {
@@ -72,6 +67,7 @@
   border-color: #d61f35;
 }
 
+
 .nav-action-btn.primary:hover::before,
 .nav-action-btn.primary:hover::after,
 .nav-action-btn.primary:focus-visible::before,
@@ -79,7 +75,7 @@
   background: #d61f35;
 }
 
-/* SPECIFIC STYLE FOR SIGN IN BUTTON - WHITE HOVER */
+
 .signin-btn {
   background-color: transparent;
   color: #EDF2F4;
@@ -98,6 +94,7 @@
 .signin-btn:focus-visible::after {
   background: #EDF2F4 !important;
 }
+
 
 /* TOP NAVBAR */
 .top-nav {

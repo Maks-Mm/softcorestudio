@@ -1,4 +1,3 @@
-// app/components/Navbar.tsx
 "use client";
 
 import { useState, useEffect } from "react";
@@ -10,13 +9,8 @@ import { useAuth } from '../hooks/useAuth';
 import { usePathname } from "next/navigation";
 import "../styles/Navbar.css";
 
-
 export default function Navbar() {
-
-  const { user, loading } = useAuth(); // Get user and loading from the hook
-
-
-
+  const { user, loading } = useAuth();
   const isSticky = useStickyNav("home");
   const scrollTo = useSmoothScroll();
   const router = useRouter();
@@ -24,12 +18,6 @@ export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const pathname = usePathname();
   const isDashboard = pathname.startsWith("/dashboard");
-
-  /*
-   console.log('Navbar - User:', user);
-   console.log('Navbar - Loading:', loading);
-   console.log('Navbar - Pathname:', pathname);
-  */
 
   const handleNavClick = (targetId: string) => {
     if (targetId === "portfolio" && window.location.pathname !== "/") {
@@ -57,7 +45,6 @@ export default function Navbar() {
     }
   };
 
-  // Redirect to portfolio if needed
   useEffect(() => {
     if (redirectToPortfolio) {
       router.push("/");
@@ -69,7 +56,6 @@ export default function Navbar() {
   }, [redirectToPortfolio, router, scrollTo]);
 
   if (loading) {
-    // Optional: Show loading state
     return (
       <nav className="top-nav clearfix">
         <div className="container">
@@ -105,7 +91,6 @@ export default function Navbar() {
 
             <div className="nav-buttons">
               {isDashboard ? (
-                /* DASHBOARD → BACK HOME */
                 <button
                   className="nav-action-btn"
                   onClick={() => router.push("/")}
@@ -113,7 +98,6 @@ export default function Navbar() {
                   Back
                 </button>
               ) : user ? (
-                /* LOGGED IN */
                 <>
                   <span className="user-email">
                     {user.email || "User"}
@@ -126,7 +110,6 @@ export default function Navbar() {
                   </button>
                 </>
               ) : (
-                /* NOT LOGGED IN */
                 <>
                   <button
                     className="nav-action-btn primary"
@@ -135,7 +118,7 @@ export default function Navbar() {
                     Sign Up
                   </button>
                   <button
-                    className="nav-action-btn signin-btn"  // Added signin-btn class
+                    className="nav-action-btn signin-btn"
                     onClick={() => router.push("/signin")}
                   >
                     Sign In
@@ -143,10 +126,6 @@ export default function Navbar() {
                 </>
               )}
             </div>
-
-
-
-
           </ul>
         </div>
       </nav>
