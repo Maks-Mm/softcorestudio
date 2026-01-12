@@ -81,7 +81,7 @@
   font-size: 1.35rem;
   margin: 0 0 0.5rem;
   font-weight: 700;
-  color: #D90429;
+  color: #D32F2F; /* Changed from #D90429 to a more natural red */
 }
 
 .portfolio-content p {
@@ -94,14 +94,14 @@
 .portfolio-link {
   display: inline-block;
   margin-top: 0.9rem;
-  color: #EF233C;
+  color: #E53935; /* Changed from #EF233C to a softer red */
   font-size: 0.95rem;
   font-weight: 600;
   transition: color 0.25s;
 }
 
 .portfolio-card:hover .portfolio-link {
-  color: #fff;
+  color: #ffcccb; /* Changed to a very light pink/red */
 }
 
 /* Responsive Styles */
